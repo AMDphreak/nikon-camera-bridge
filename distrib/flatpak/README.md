@@ -4,9 +4,9 @@ Flathub expects an AppStream metainfo file, desktop entry, and a manifest that e
 
 ## Layout (proposed)
 
-- `com.amdphreak.NikonUvcPtpBridge.yml` — main manifest (module downloads release `.tar.gz` for `x86_64` / `aarch64`).
-- `com.amdphreak.NikonUvcPtpBridge.metainfo.xml` — AppStream metadata (screenshots, releases, OARS).
-- `com.amdphreak.NikonUvcPtpBridge.desktop` — `.desktop` launcher.
+- `com.amdphreak.NikonCameraBridge.yml` — main manifest (module downloads release `.tar.gz` for `x86_64` / `aarch64`).
+- `com.amdphreak.NikonCameraBridge.metainfo.xml` — AppStream metadata (screenshots, releases, OARS).
+- `com.amdphreak.NikonCameraBridge.desktop` — `.desktop` launcher.
 
 ## Submission checklist
 
