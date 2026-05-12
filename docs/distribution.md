@@ -12,6 +12,7 @@ This repo ships **binaries from GitHub Releases** for **Windows (x64 + arm64)**,
 | **Generic Linux** | `.tar.gz` | x64, arm64 | GitHub Release tarball |
 | **Flathub / Flatpak** | Flatpak bundle | x86_64, aarch64 | See `distrib/flatpak/` (template + submission notes) |
 | **Arch (AUR)** | `PKGBUILD` | x86_64, aarch64 | Template `distrib/aur/PKGBUILD.in` |
+| **Snap** | `.snap` | amd64 / arm64 | Optional; add `snapcraft.yaml` if you want Snapcraft builds (not generated in CI yet). |
 
 Fully automated publishing to **microsoft/winget-pkgs**, **Homebrew/homebrew-cask**, and **Flathub** requires **maintainer accounts**, **tokens**, and **human review** on those ecosystems. This repository automates **building**, **hashing**, and **attaching** artifacts plus **rendering** manifest snippets you can copy into upstream PRs.
 
