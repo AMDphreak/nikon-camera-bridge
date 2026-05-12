@@ -133,7 +133,7 @@ Publisher: AMDphreak
 PublisherUrl: https://github.com/${owner}
 PackageName: Webcam Bridge for Nikon
 PackageUrl: https://github.com/${owner}/${repo}
-License: MIT
+License: AGPL-3.0
 LicenseUrl: https://github.com/${owner}/${repo}/raw/main/LICENSE
 ShortDescription: Nikon USB bridge shell (virtual camera + control API roadmap)
 Moniker: webcam-bridge-for-nikon

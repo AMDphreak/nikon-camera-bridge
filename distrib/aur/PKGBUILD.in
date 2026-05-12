@@ -7,7 +7,7 @@ pkgrel=1
 pkgdesc='Webcam Bridge for Nikon desktop shell (upstream prebuilt .deb)'
 arch=('x86_64' 'aarch64')
 url='https://github.com/AMDphreak/nikon-camera-bridge'
-license=('MIT')
+license=('AGPL-3.0-or-later')
 depends=('gtk3' 'nss' 'alsa-lib' 'libdrm' 'mesa' 'libxcb' 'libxkbcommon' 'libappindicator-gtk3')
 options=('!strip')
 

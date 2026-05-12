@@ -4,6 +4,7 @@
 
 ### Changed
 
+- **License:** Relicensed from **MIT** to **GNU Affero General Public License v3.0 or later** (`AGPL-3.0-or-later`): full text in [`LICENSE`](./LICENSE), SPDX in workspace `package.json` files, WinGet / Homebrew / AUR templates, marketing site footer, and desktop about copy. Strong copyleft applies to distributed derivatives; AGPL **network** rules apply when modified code is run as a **remote** service for users (relevant for the control API direction in `packages/api`).
 - **Desktop release artifacts**: Windows **`.msi`**, **`.msix`**, and portable **`.zip`** (x64 + arm64); macOS **`.dmg`**; Linux **`.deb`**, **`.AppImage`**, and electron-builder **`.flatpak`** single-file bundles. CI installs **Flatpak** tooling on Ubuntu runners. WinGet generated manifests list **MSI**, **MSIX**, and portable **zip**; Homebrew cask **`webcam-bridge-for-nikon`** uses **DMG** URLs; AUR template **`webcam-bridge-for-nikon-bin`** unpacks the **`.deb`**.
 - **Product name** for the shipped desktop app and marketing site: **Webcam Bridge for Nikon**. Release file prefix **`Webcam.Bridge.for.Nikon-*`**. **Microsoft Store** listing [9N90Q0C8F6ZW](https://apps.microsoft.com/detail/9n90q0c8f6zw); MSIX **`identityName`** `AMDphreak.WebcamBridgeforNikon`, **`publisher`** `CN=6AC37873-9F91-4911-9411-D11B8BA63A5C`. WinGet package id **`AMDphreak.WebcamBridgeforNikon`**.
 

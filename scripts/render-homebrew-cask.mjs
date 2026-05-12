@@ -62,6 +62,8 @@ const fixed = `cask "webcam-bridge-for-nikon" do
   desc "Desktop shell for the Nikon USB bridge (virtual camera + control API roadmap)"
   homepage "https://github.com/${owner}/${repo}"
 
+  license "AGPL-3.0-or-later"
+
   depends_on macos: ">= :catalina"
 
   app "Webcam Bridge for Nikon.app"

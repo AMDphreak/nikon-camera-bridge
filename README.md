@@ -193,4 +193,8 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 ## License
 
-MIT
+This project is licensed under the [**GNU Affero General Public License v3.0 or later**](https://www.gnu.org/licenses/agpl-3.0.html) (SPDX: **`AGPL-3.0-or-later`**). See [`LICENSE`](./LICENSE) for the full text.
+
+**Why AGPL?** It is a **strong copyleft** license: if someone modifies this code and **distributes** it or **runs it as a networked service** for others, they generally must **offer their source under the same license**. That discourages proprietary “copycat” forks and scam repackagers who won’t publish source, while still allowing **anyone to study, improve, and redistribute** the project and to **charge for binaries** as long as they comply with the license.
+
+**Contributions:** Pull requests and issues are welcome. By contributing, you agree your contributions are under the same license (see [`CONTRIBUTING.md`](./CONTRIBUTING.md)).

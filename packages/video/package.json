@@ -16,7 +16,7 @@
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.build.json --noEmit"
   },
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "devDependencies": {
     "typescript": "~5.7.2"
   }

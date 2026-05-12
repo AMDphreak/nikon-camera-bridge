@@ -51,13 +51,21 @@ export default function App() {
           <Suspense>{props.children}</Suspense>
           <footer class="site-footer">
             <p>
-              Open source —{" "}
+              AGPL-3.0-or-later —{" "}
               <a
                 href="https://github.com/AMDphreak/nikon-camera-bridge/blob/main/LICENSE"
                 target="_blank"
                 rel="noreferrer"
               >
-                MIT
+                License
+              </a>
+              {" · "}
+              <a
+                href="https://github.com/AMDphreak/nikon-camera-bridge/blob/main/CONTRIBUTING.md"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Contributing
               </a>
             </p>
           </footer>
