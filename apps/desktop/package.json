@@ -1,13 +1,15 @@
 {
   "name": "@nikon-uvc-ptp-bridge/desktop",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Electron desktop shell for the Nikon UVC-PTP bridge",
   "type": "module",
   "main": "out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
     "build": "electron-vite build",
-    "build:win": "electron-vite build && electron-builder --win zip --publish never",
+    "build:win": "electron-vite build && electron-builder --win zip --x64 --publish never --config.directories.output=release/win-x64 && electron-builder --win zip --arm64 --publish never --config.directories.output=release/win-arm64",
+    "build:linux": "electron-vite build && electron-builder --linux tar.gz --x64 --publish never --config.directories.output=release/linux-x64-tgz && electron-builder --linux tar.gz --arm64 --publish never --config.directories.output=release/linux-arm64-tgz && electron-builder --linux deb --x64 --publish never --config.directories.output=release/linux-x64-deb && electron-builder --linux deb --arm64 --publish never --config.directories.output=release/linux-arm64-deb",
+    "build:mac": "electron-vite build && electron-builder --mac zip --x64 --publish never --config.directories.output=release/mac-x64 && electron-builder --mac zip --arm64 --publish never --config.directories.output=release/mac-arm64",
     "preview": "electron-vite preview",
     "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit"
   },
@@ -29,6 +31,7 @@
     "electronVersion": "33.4.11",
     "appId": "com.amdphreak.nikonUvcPtpBridge",
     "productName": "Nikon UVC-PTP Bridge",
+    "artifactName": "Nikon.UVC-PTP.Bridge-${version}-${os}-${arch}.${ext}",
     "directories": {
       "output": "release",
       "buildResources": "build"
@@ -37,6 +40,17 @@
     "win": {
       "target": ["zip"],
       "signAndEditExecutable": false
+    },
+    "linux": {
+      "target": ["tar.gz", "deb"],
+      "category": "Utility",
+      "maintainer": "AMDphreak"
+    },
+    "mac": {
+      "target": ["zip"],
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false
     },
     "forceCodeSigning": false
   }

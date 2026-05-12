@@ -1,6 +1,6 @@
 {
   "name": "nikon-uvc-ptp-bridge",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Monorepo: Nikon USB bridge core, control API, MF virtual camera adapter, and desktop shell",
   "author": "AMDphreak",
@@ -18,8 +18,12 @@
     "dev:api": "pnpm --filter @nikon-uvc-ptp-bridge/api dev",
     "build": "pnpm run build:packages && pnpm --filter @nikon-uvc-ptp-bridge/desktop run build",
     "build:win": "pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:win",
+    "build:linux": "pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:linux",
+    "build:mac": "pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:mac",
     "typecheck": "pnpm -r run typecheck",
     "start:api": "pnpm --filter @nikon-uvc-ptp-bridge/api start",
+    "render:winget": "node scripts/render-winget.mjs",
+    "render:brew": "node scripts/render-homebrew-cask.mjs",
     "pack:packages": "node scripts/pack-workspace.mjs"
   },
   "engines": {

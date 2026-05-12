@@ -37,8 +37,19 @@ jobs:
         run: pnpm run build:packages
 
   desktop:
-    name: Desktop zip + library packs
-    runs-on: windows-latest
+    name: Desktop (${{ matrix.kind }}, x64 + arm64)
+    needs: [packages]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            kind: windows
+          - os: ubuntu-latest
+            kind: linux
+          - os: macos-latest
+            kind: mac
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -63,49 +74,79 @@ jobs:
       - name: Build workspace
         run: pnpm build
 
-      - name: Package Windows zip
+      - name: Package Windows (x64 + arm64 zip)
+        if: matrix.kind == 'windows'
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
         run: pnpm run build:win
 
+      - name: Package Linux (x64 + arm64 tar.gz + deb)
+        if: matrix.kind == 'linux'
+        run: pnpm run build:linux
+
+      - name: Package macOS (x64 + arm64 zip)
+        if: matrix.kind == 'mac'
+        env:
+          CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+        run: pnpm run build:mac
+
       - name: Pack workspace libraries
+        if: matrix.kind == 'windows'
         run: pnpm run pack:packages
 
-      - name: Upload package tarballs
+      - name: Upload bridge-windows
+        if: matrix.kind == 'windows'
         uses: actions/upload-artifact@v4
         with:
-          name: bridge-packages-tgz
-          path: dist-pack/*.tgz
+          name: bridge-windows
+          path: |
+            apps/desktop/release/**/*.zip
+            dist-pack/*.tgz
 
-      - name: Upload Windows artifact
+      - name: Upload bridge-linux
+        if: matrix.kind == 'linux'
         uses: actions/upload-artifact@v4
         with:
-          name: bridge-desktop-win-zip
-          path: apps/desktop/release/*.zip
+          name: bridge-linux
+          path: |
+            apps/desktop/release/**/*.tar.gz
+            apps/desktop/release/**/*.deb
+
+      - name: Upload bridge-macos
+        if: matrix.kind == 'mac'
+        uses: actions/upload-artifact@v4
+        with:
+          name: bridge-macos
+          path: apps/desktop/release/**/*.zip
 
   publish:
     name: Publish GitHub Release
     needs: [packages, desktop]
     runs-on: ubuntu-latest
     steps:
-      - name: Download package tarballs
+      - name: Download all bridge artifacts
         uses: actions/download-artifact@v4
         with:
-          name: bridge-packages-tgz
-          path: release-assets
+          pattern: bridge-*
+          path: _dl
+          merge-multiple: true
 
-      - name: Download Windows zip
-        uses: actions/download-artifact@v4
-        with:
-          name: bridge-desktop-win-zip
-          path: release-assets
+      - name: Flatten release assets
+        run: |
+          mkdir -p release-assets
+          find _dl -type f \( -name '*.zip' -o -name '*.tgz' -o -name '*.tar.gz' -o -name '*.deb' \) -print -exec cp {} release-assets/ \;
+          ls -la release-assets
+
+      - name: Render WinGet + Homebrew manifests
+        env:
+          VERSION: ${{ github.ref_name }}
+          ASSETS_DIR: release-assets
+        run: node scripts/render-winget.mjs && node scripts/render-homebrew-cask.mjs
 
       - name: Publish GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            release-assets/*.tgz
-            release-assets/*.zip
+          files: release-assets/**
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

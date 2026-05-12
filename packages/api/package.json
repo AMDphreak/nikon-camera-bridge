@@ -1,6 +1,6 @@
 {
   "name": "@nikon-uvc-ptp-bridge/api",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "HTTP control surface for the Nikon bridge (stub routes; future PTP command mapping)",
   "type": "module",
   "main": "./dist/index.js",

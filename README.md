@@ -131,10 +131,22 @@ pnpm typecheck
 pnpm build
 ```
 
-**Windows desktop zip** (unsigned):
+**Windows desktop** (x64 + arm64 zip, unsigned):
 
 ```powershell
 pnpm run build:win
+```
+
+**Linux desktop** (x64 + arm64 `.tar.gz` + `.deb`):
+
+```powershell
+pnpm run build:linux
+```
+
+**macOS desktop** (x64 + arm64 zip, unsigned):
+
+```powershell
+pnpm run build:mac
 ```
 
 **Pack npm tarballs** for the three libraries (written to `dist-pack/`). Locally:
@@ -143,12 +155,14 @@ pnpm run build:win
 pnpm run pack:packages
 ```
 
-On **GitHub Actions**, library `.tgz` files are produced on the **Windows** desktop job (`pnpm run pack:packages`) so packing matches local developer machines; the Ubuntu job still compiles all packages for Linux CI coverage.
+On **GitHub Actions**, library `.tgz` files are produced on the **Windows** desktop matrix leg (`pnpm run pack:packages`) so packing matches local developer machines; the Ubuntu job still compiles all packages for Linux CI coverage.
+
+Electron writes each OS/arch combination under `apps/desktop/release/<staging-folder>/` so **x64** and **arm64** builds never share the same `win-unpacked` tree (avoids file locks on Windows).
 
 ## CI and releases
 
-- **CI** (`.github/workflows/ci.yml`): Ubuntu job typechecks and builds all `packages/*`. Windows job typechecks the full workspace, runs `pnpm build` and `pnpm run build:win`, then **`pnpm run pack:packages`** and uploads both **`dist-pack/*.tgz`** and the desktop zip from `apps/desktop/release/`.
-- **Release** (`.github/workflows/release.yml`): On `v*` tags, repeats those builds and attaches **all** `.tgz` files plus the **Windows zip** to the GitHub Release.
+- **CI** (`.github/workflows/ci.yml`): Ubuntu builds `packages/*`. A **desktop matrix** on **Windows**, **Ubuntu**, and **macOS** typechecks the workspace, runs `pnpm build`, then packages **x64 + arm64** artifacts per OS (Windows zip, Linux tar.gz + deb, macOS zip). The Windows leg also runs **`pnpm run pack:packages`** and uploads **`bridge-windows`** (zips + library `.tgz`). Linux and macOS legs upload **`bridge-linux`** and **`bridge-macos`**.
+- **Release** (`.github/workflows/release.yml`): On `v*` tags, merges all `bridge-*` artifacts, runs **`scripts/render-winget.mjs`** and **`scripts/render-homebrew-cask.mjs`**, and publishes everything under **`release-assets/**`** (binaries, WinGet YAML, Homebrew cask Ruby) to the GitHub Release.
 
 ## Changelog
 

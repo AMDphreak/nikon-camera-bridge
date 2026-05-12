@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0] - 2026-05-12
+
+### Added
+
+- Desktop builds for **Linux** (`.tar.gz` + `.deb`, x64 + arm64) and **macOS** (`.zip`, x64 + arm64) alongside **Windows** (`.zip`, x64 + arm64); `artifactName` includes OS and arch.
+- `docs/distribution.md` with WinGet, Homebrew, Debian/Flatpak, and AUR maintainer flows.
+- `scripts/render-winget.mjs` and `scripts/render-homebrew-cask.mjs`; release workflow attaches generated manifests next to binaries.
+- `distrib/flatpak/README.md` and `distrib/aur/PKGBUILD.in` templates for Linux packaging ecosystems.
+
+### Changed
+
+- Desktop Windows/Linux/macOS packaging uses **separate `directories.output` staging folders** per architecture so parallel **x64** and **arm64** artifacts do not fight over the same unpacked directory (important on Windows).
+
+[0.3.0]: https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases/tag/v0.3.0
+
 ## [0.2.0] - 2026-05-12
 
 ### Added
