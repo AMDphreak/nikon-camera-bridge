@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nikon UVC-PTP Bridge</title>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero">
+        <h1>Nikon UVC-PTP Bridge</h1>
+        <p class="lede">
+          One process owns the camera: PTP-style control plus a single video consumer, then re-publish frames to other apps
+          through a virtual camera (or similar) instead of fighting the stock webcam driver.
+        </p>
+      </header>
+
+      <section class="panel">
+        <h2>v0.1.0 status</h2>
+        <p id="status" class="status">Loading…</p>
+        <div class="actions">
+          <button type="button" id="exclusive" class="btn primary">Acquire exclusive (stub)</button>
+          <button type="button" id="virtual" class="btn">Start virtual camera (stub)</button>
+        </div>
+      </section>
+
+      <section class="panel muted">
+        <h2>Why this exists</h2>
+        <p>
+          Nikon’s utilities often assume a single client. Mixing the UVC webcam driver with tethering-style control frequently
+          fails because the firmware, class drivers, or companion apps contend for the same USB functions. This project aims to
+          consolidate access in one service layer, then expose video and control through stable, composable surfaces.
+        </p>
+      </section>
+
+      <section class="layers">
+        <h2>Target layering</h2>
+        <ol>
+          <li><strong>Physical USB</strong> — WinUSB or still-image negotiation so only the bridge opens the device.</li>
+          <li>
+            <strong>Demux</strong> — read UVC-style video (or PTP live view where applicable) and PTP control channels in one
+            coordinator.
+          </li>
+          <li>
+            <strong>Virtual sink</strong> — Windows Media Foundation virtual camera, DirectShow filter, or OBS VirtualCam-style
+            output so Zoom, Teams, and OBS see one predictable device owned by the bridge.
+          </li>
+          <li><strong>Control API</strong> — local IPC today; optional HTTP or gRPC for companion tools later.</li>
+        </ol>
+      </section>
+
+      <footer class="foot">
+        <p>MIT licensed. Roadmap lives in <code>README.md</code> and <code>CHANGELOG.md</code>.</p>
+      </footer>
+    </main>
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>
