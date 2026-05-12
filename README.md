@@ -143,11 +143,11 @@ pnpm run build:win
 pnpm run pack:packages
 ```
 
-On **GitHub Actions** (Ubuntu), the workflows use an explicit **bash** `pnpm pack` loop so packing does not depend on the default shell.
+On **GitHub Actions**, library `.tgz` files are produced on the **Windows** desktop job (`pnpm run pack:packages`) so packing matches local developer machines; the Ubuntu job still compiles all packages for Linux CI coverage.
 
 ## CI and releases
 
-- **CI** (`.github/workflows/ci.yml`): Ubuntu job builds and typechecks all `packages/*`, packs `.tgz` artifacts; Windows job typechecks the full workspace, runs `pnpm build` and `pnpm run build:win`, uploads the desktop zip from `apps/desktop/release/`.
+- **CI** (`.github/workflows/ci.yml`): Ubuntu job typechecks and builds all `packages/*`. Windows job typechecks the full workspace, runs `pnpm build` and `pnpm run build:win`, then **`pnpm run pack:packages`** and uploads both **`dist-pack/*.tgz`** and the desktop zip from `apps/desktop/release/`.
 - **Release** (`.github/workflows/release.yml`): On `v*` tags, repeats those builds and attaches **all** `.tgz` files plus the **Windows zip** to the GitHub Release.
 
 ## Changelog

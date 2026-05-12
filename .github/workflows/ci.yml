@@ -12,7 +12,7 @@ concurrency:
 
 jobs:
   packages:
-    name: Packages (build + pack)
+    name: Packages (Linux build)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,24 +38,8 @@ jobs:
       - name: Build packages
         run: pnpm run build:packages
 
-      - name: Pack workspace libraries
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p dist-pack
-          pnpm --filter "@nikon-uvc-ptp-bridge/core" pack --pack-destination dist-pack
-          pnpm --filter "@nikon-uvc-ptp-bridge/api" pack --pack-destination dist-pack
-          pnpm --filter "@nikon-uvc-ptp-bridge/video" pack --pack-destination dist-pack
-          ls -la dist-pack
-
-      - name: Upload package tarballs
-        uses: actions/upload-artifact@v4
-        with:
-          name: bridge-packages-tgz
-          path: dist-pack/*.tgz
-
   desktop:
-    name: Desktop (Windows zip)
+    name: Desktop (Windows zip + library packs)
     runs-on: windows-latest
     steps:
       - name: Checkout
@@ -85,6 +69,15 @@ jobs:
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
         run: pnpm run build:win
+
+      - name: Pack workspace libraries
+        run: pnpm run pack:packages
+
+      - name: Upload package tarballs
+        uses: actions/upload-artifact@v4
+        with:
+          name: bridge-packages-tgz
+          path: dist-pack/*.tgz
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4

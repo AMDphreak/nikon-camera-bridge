@@ -7,7 +7,7 @@
 - pnpm workspace with `@nikon-uvc-ptp-bridge/core`, `@nikon-uvc-ptp-bridge/api`, `@nikon-uvc-ptp-bridge/video`, and `@nikon-uvc-ptp-bridge/desktop`.
 - HTTP stub server in `packages/api` (`GET /health`, `GET /v1/state`, `POST /v1/command`, `POST /v1/state/mirror`).
 - Component README files with focused Mermaid diagrams; root README documents the full system and layout tables.
-- CI matrix: Ubuntu builds and packs library `.tgz` artifacts; Windows typechecks the full workspace, builds, and produces the desktop zip.
+- CI: Ubuntu builds `packages/*`; Windows builds the desktop zip and packs all library `.tgz` files in one job (packing on Linux runners was unreliable with pnpm `pack`).
 - Release workflow on `v*` tags attaches all `.tgz` files plus the Windows zip.
 - `scripts/pack-workspace.mjs` helper to write all three workspace `.tgz` files into `dist-pack/`.
 - pnpm `confirmModulesPurge: false` and `public-hoist-pattern` for Electron so local installs and **electron-builder** behave under the workspace layout.
