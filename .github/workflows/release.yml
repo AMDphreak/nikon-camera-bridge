@@ -37,11 +37,7 @@ jobs:
         run: pnpm run build:packages
 
       - name: Pack workspace libraries
-        run: |
-          mkdir -p dist-pack
-          pnpm --filter @nikon-uvc-ptp-bridge/core pack --pack-destination "${{ github.workspace }}/dist-pack"
-          pnpm --filter @nikon-uvc-ptp-bridge/api pack --pack-destination "${{ github.workspace }}/dist-pack"
-          pnpm --filter @nikon-uvc-ptp-bridge/video pack --pack-destination "${{ github.workspace }}/dist-pack"
+        run: pnpm run pack:packages
 
       - name: Upload package tarballs
         uses: actions/upload-artifact@v4
