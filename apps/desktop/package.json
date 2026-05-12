@@ -1,0 +1,43 @@
+{
+  "name": "@nikon-uvc-ptp-bridge/desktop",
+  "version": "0.2.0",
+  "description": "Electron desktop shell for the Nikon UVC-PTP bridge",
+  "type": "module",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "build:win": "electron-vite build && electron-builder --win zip --publish never",
+    "preview": "electron-vite preview",
+    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit"
+  },
+  "dependencies": {
+    "@nikon-uvc-ptp-bridge/core": "workspace:*",
+    "@nikon-uvc-ptp-bridge/video": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "electron-vite": "^2.3.0",
+    "typescript": "~5.7.2",
+    "vite": "^5.4.14"
+  },
+  "author": "AMDphreak",
+  "license": "MIT",
+  "build": {
+    "electronVersion": "33.4.11",
+    "appId": "com.amdphreak.nikonUvcPtpBridge",
+    "productName": "Nikon UVC-PTP Bridge",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": ["out/**/*"],
+    "win": {
+      "target": ["zip"],
+      "signAndEditExecutable": false
+    },
+    "forceCodeSigning": false
+  }
+}

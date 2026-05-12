@@ -1,46 +1,28 @@
 {
   "name": "nikon-uvc-ptp-bridge",
-  "version": "0.1.0",
-  "description": "Windows-first bridge: exclusive Nikon USB access, virtual camera output, and PTP-style control surface",
-  "type": "module",
-  "main": "out/main/index.js",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Monorepo: Nikon USB bridge core, control API, MF virtual camera adapter, and desktop shell",
   "author": "AMDphreak",
   "license": "MIT",
+  "type": "module",
   "pnpm": {
-    "onlyBuiltDependencies": ["electron", "esbuild"]
+    "onlyBuiltDependencies": ["electron", "esbuild"],
+    "confirmModulesPurge": false
   },
   "scripts": {
-    "dev": "electron-vite dev",
-    "build": "electron-vite build",
-    "build:win": "electron-vite build && electron-builder --win zip --publish never",
-    "preview": "electron-vite preview",
-    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit"
+    "prepare": "pnpm run build:packages",
+    "build:packages": "pnpm --filter @nikon-uvc-ptp-bridge/core run build && pnpm --filter @nikon-uvc-ptp-bridge/api run build && pnpm --filter @nikon-uvc-ptp-bridge/video run build",
+    "typecheck:packages": "pnpm --filter @nikon-uvc-ptp-bridge/core run typecheck && pnpm --filter @nikon-uvc-ptp-bridge/api run typecheck && pnpm --filter @nikon-uvc-ptp-bridge/video run typecheck",
+    "dev": "pnpm --filter @nikon-uvc-ptp-bridge/desktop dev",
+    "dev:api": "pnpm --filter @nikon-uvc-ptp-bridge/api dev",
+    "build": "pnpm run build:packages && pnpm --filter @nikon-uvc-ptp-bridge/desktop run build",
+    "build:win": "pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:win",
+    "typecheck": "pnpm -r run typecheck",
+    "start:api": "pnpm --filter @nikon-uvc-ptp-bridge/api start",
+    "pack:packages": "node scripts/pack-workspace.mjs"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "@types/node": "^22.10.5",
-    "electron": "^33.2.1",
-    "electron-builder": "^25.1.8",
-    "electron-vite": "^2.3.0",
-    "typescript": "~5.7.2",
-    "vite": "^5.4.14"
-  },
-  "build": {
-    "appId": "com.amdphreak.nikonUvcPtpBridge",
-    "productName": "Nikon UVC-PTP Bridge",
-    "directories": {
-      "output": "release",
-      "buildResources": "build"
-    },
-    "files": [
-      "out/**/*"
-    ],
-    "win": {
-      "target": [
-        "zip"
-      ],
-      "signAndEditExecutable": false
-    },
-    "forceCodeSigning": false
+  "engines": {
+    "node": ">=20"
   }
 }

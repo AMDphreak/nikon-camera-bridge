@@ -1,18 +1,13 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
+import { createInitialBridgeState, type BridgeState } from '@nikon-uvc-ptp-bridge/core'
+import { VIDEO_ADAPTER_NOTES, VIDEO_ADAPTER_STAGE } from '@nikon-uvc-ptp-bridge/video'
 
-type BridgeState = {
-  exclusiveAcquired: boolean
-  virtualCameraActive: boolean
-  lastMessage: string
-}
-
+const base = createInitialBridgeState()
 const bridgeState: BridgeState = {
-  exclusiveAcquired: false,
-  virtualCameraActive: false,
-  lastMessage:
-    'Idle. v0.1.0 is a control shell and architecture placeholder. Native USB capture and a virtual camera sink are planned for follow-up releases.'
+  ...base,
+  lastMessage: `${base.lastMessage} Video adapter: ${VIDEO_ADAPTER_STAGE}. ${VIDEO_ADAPTER_NOTES}`
 }
 
 let mainWindow: BrowserWindow | null = null
@@ -86,7 +81,7 @@ ipcMain.handle('bridge:setExclusive', async (_event, acquire: boolean) => {
 ipcMain.handle('bridge:setVirtualCamera', async (_event, active: boolean) => {
   bridgeState.virtualCameraActive = Boolean(active)
   bridgeState.lastMessage = active
-    ? 'Virtual camera path toggled on (stub). Planned: Windows Media Foundation virtual camera or an OBS VirtualCam-style sink.'
+    ? `Virtual camera path toggled on (stub). ${VIDEO_ADAPTER_NOTES}`
     : 'Virtual camera path toggled off (stub).'
   return { ...bridgeState }
 })

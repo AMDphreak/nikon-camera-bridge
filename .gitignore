@@ -5,8 +5,12 @@ pnpm-debug.log*
 node_modules
 dist
 dist-ssr
+dist-pack
 out
 release
+apps/desktop/out
+apps/desktop/release
+packages/*/dist
 *.local
 .DS_Store
 Thumbs.db

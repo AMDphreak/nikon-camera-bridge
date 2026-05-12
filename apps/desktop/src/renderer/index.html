@@ -10,13 +10,13 @@
       <header class="hero">
         <h1>Nikon UVC-PTP Bridge</h1>
         <p class="lede">
-          One process owns the camera: PTP-style control plus a single video consumer, then re-publish frames to other apps
-          through a virtual camera (or similar) instead of fighting the stock webcam driver.
+          Monorepo: one logical core will own USB, expose a Media Foundation virtual camera for fan-out video, and serve a
+          separate HTTP control API. This window is the desktop shell; see the repo README for architecture diagrams.
         </p>
       </header>
 
       <section class="panel">
-        <h2>v0.1.0 status</h2>
+        <h2>Desktop status</h2>
         <p id="status" class="status">Loading…</p>
         <div class="actions">
           <button type="button" id="exclusive" class="btn primary">Acquire exclusive (stub)</button>
@@ -25,11 +25,12 @@
       </section>
 
       <section class="panel muted">
-        <h2>Why this exists</h2>
+        <h2>Workspace layout</h2>
         <p>
-          Nikon’s utilities often assume a single client. Mixing the UVC webcam driver with tethering-style control frequently
-          fails because the firmware, class drivers, or companion apps contend for the same USB functions. This project aims to
-          consolidate access in one service layer, then expose video and control through stable, composable surfaces.
+          <code>packages/core</code> — shared types and state helpers.<br />
+          <code>packages/api</code> — HTTP control server (stub routes). Run <code>pnpm run start:api</code> from the repo root.<br />
+          <code>packages/video</code> — MF virtual camera adapter (planned).<br />
+          <code>apps/desktop</code> — this Electron app.
         </p>
       </section>
 
@@ -45,12 +46,12 @@
             <strong>Virtual sink</strong> — Windows Media Foundation virtual camera, DirectShow filter, or OBS VirtualCam-style
             output so Zoom, Teams, and OBS see one predictable device owned by the bridge.
           </li>
-          <li><strong>Control API</strong> — local IPC today; optional HTTP or gRPC for companion tools later.</li>
+          <li><strong>Control API</strong> — HTTP JSON in <code>packages/api</code> (future PTP mapping).</li>
         </ol>
       </section>
 
       <footer class="foot">
-        <p>MIT licensed. Roadmap lives in <code>README.md</code> and <code>CHANGELOG.md</code>.</p>
+        <p>MIT licensed. Changelog: <code>CHANGELOG.md</code> at repo root.</p>
       </footer>
     </main>
     <script type="module" src="./main.ts"></script>
