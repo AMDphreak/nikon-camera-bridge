@@ -28,7 +28,7 @@
     "electron-builder": "^25.1.8",
     "electron-vite": "^2.3.0",
     "typescript": "~5.7.2",
-    "vite": "^5.4.14"
+    "vite": "^6.4.2"
   },
   "author": "AMDphreak",
   "license": "AGPL-3.0-or-later",
