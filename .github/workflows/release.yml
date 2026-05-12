@@ -37,7 +37,14 @@ jobs:
         run: pnpm run build:packages
 
       - name: Pack workspace libraries
-        run: pnpm run pack:packages
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist-pack
+          pnpm --filter "@nikon-uvc-ptp-bridge/core" pack --pack-destination dist-pack
+          pnpm --filter "@nikon-uvc-ptp-bridge/api" pack --pack-destination dist-pack
+          pnpm --filter "@nikon-uvc-ptp-bridge/video" pack --pack-destination dist-pack
+          ls -la dist-pack
 
       - name: Upload package tarballs
         uses: actions/upload-artifact@v4

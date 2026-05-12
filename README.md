@@ -137,11 +137,13 @@ pnpm build
 pnpm run build:win
 ```
 
-**Pack npm tarballs** for the three libraries (written to `dist-pack/`):
+**Pack npm tarballs** for the three libraries (written to `dist-pack/`). Locally:
 
 ```powershell
 pnpm run pack:packages
 ```
+
+On **GitHub Actions** (Ubuntu), the workflows use an explicit **bash** `pnpm pack` loop so packing does not depend on the default shell.
 
 ## CI and releases
 
