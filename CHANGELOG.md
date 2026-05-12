@@ -9,7 +9,7 @@
 - Component README files with focused Mermaid diagrams; root README documents the full system and layout tables.
 - CI: Ubuntu builds `packages/*`; Windows builds the desktop zip and packs all library `.tgz` files in one job (packing on Linux runners was unreliable with pnpm `pack`).
 - Release workflow on `v*` tags attaches all `.tgz` files plus the Windows zip.
-- `scripts/pack-workspace.mjs` helper to write all three workspace `.tgz` files into `dist-pack/`.
+- `scripts/pack-workspace.mjs` runs `pnpm pack` from each `packages/*` directory so CI env vars like `npm_config_recursive` do not break `pnpm pack`.
 - pnpm `confirmModulesPurge: false` and `public-hoist-pattern` for Electron so local installs and **electron-builder** behave under the workspace layout.
 - Desktop `build.electronVersion` pinned for electron-builder when Electron is hoisted by pnpm.
 

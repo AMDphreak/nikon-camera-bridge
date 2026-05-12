@@ -5,19 +5,15 @@ import { execSync } from 'node:child_process'
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 const distPack = join(root, 'dist-pack')
-const packages = [
-  '@nikon-uvc-ptp-bridge/core',
-  '@nikon-uvc-ptp-bridge/api',
-  '@nikon-uvc-ptp-bridge/video'
-]
+const packageDirs = ['packages/core', 'packages/api', 'packages/video']
 
 await mkdir(distPack, { recursive: true })
 
-for (const name of packages) {
-  const quotedDest = JSON.stringify(distPack)
-  const quotedName = JSON.stringify(name)
-  execSync(`pnpm --filter ${quotedName} pack --pack-destination ${quotedDest}`, {
-    cwd: root,
+const dest = JSON.stringify(distPack)
+
+for (const rel of packageDirs) {
+  execSync(`pnpm pack --pack-destination ${dest}`, {
+    cwd: join(root, rel),
     stdio: 'inherit',
     shell: true,
     env: process.env
