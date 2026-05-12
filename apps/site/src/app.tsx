@@ -16,23 +16,23 @@ export default function App() {
       base={routerBase()}
       root={props => (
         <MetaProvider>
-          <Title>Nikon UVC–PTP Bridge</Title>
+          <Title>Nikon Camera Bridge</Title>
           <header class="site-header">
             <nav class="site-nav" aria-label="Primary">
               <A href="/" class="brand" end>
-                Nikon UVC–PTP Bridge
+                Nikon Camera Bridge
               </A>
               <span class="nav-links">
                 <A href="/about">Download &amp; platforms</A>
                 <a
-                  href="https://github.com/AMDphreak/nikon-uvc-ptp-bridge"
+                  href="https://github.com/AMDphreak/nikon-camera-bridge"
                   target="_blank"
                   rel="noreferrer"
                 >
                   GitHub
                 </a>
                 <a
-                  href="https://github.com/AMDphreak/nikon-uvc-ptp-bridge/blob/main/docs/distribution.md"
+                  href="https://github.com/AMDphreak/nikon-camera-bridge/blob/main/docs/distribution.md"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -46,7 +46,7 @@ export default function App() {
             <p>
               Open source —{" "}
               <a
-                href="https://github.com/AMDphreak/nikon-uvc-ptp-bridge/blob/main/LICENSE"
+                href="https://github.com/AMDphreak/nikon-camera-bridge/blob/main/LICENSE"
                 target="_blank"
                 rel="noreferrer"
               >

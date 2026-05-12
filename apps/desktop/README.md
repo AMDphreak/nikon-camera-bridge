@@ -1,6 +1,6 @@
-# @nikon-uvc-ptp-bridge/desktop
+# @nikon-camera-bridge/desktop
 
-Electron **shell** for the Nikon bridge: local IPC toggles (stubs), status text, and links to the workspace architecture. It imports shared types from `@nikon-uvc-ptp-bridge/core` and stage metadata from `@nikon-uvc-ptp-bridge/video` so the desktop stays aligned with the other packages.
+Electron **shell** for the Nikon bridge: local IPC toggles (stubs), status text, and links to the workspace architecture. It imports shared types from `@nikon-camera-bridge/core` and stage metadata from `@nikon-camera-bridge/video` so the desktop stays aligned with the other packages.
 
 ## How it fits with the other pieces
 
@@ -17,9 +17,9 @@ flowchart LR
   end
 
   subgraph other["Other packages"]
-    Core["@nikon-uvc-ptp-bridge/core"]
-    API["@nikon-uvc-ptp-bridge/api"]
-    VID["@nikon-uvc-ptp-bridge/video"]
+    Core["@nikon-camera-bridge/core"]
+    API["@nikon-camera-bridge/api"]
+    VID["@nikon-camera-bridge/video"]
   end
 
   User --> UI
@@ -34,9 +34,9 @@ The GUI is **one control client** among many; the long-term split is a headless 
 ## Scripts
 
 ```powershell
-pnpm --filter @nikon-uvc-ptp-bridge/desktop dev
-pnpm --filter @nikon-uvc-ptp-bridge/desktop run build
-pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:win
+pnpm --filter @nikon-camera-bridge/desktop dev
+pnpm --filter @nikon-camera-bridge/desktop run build
+pnpm --filter @nikon-camera-bridge/desktop run build:win
 ```
 
 From the **repository root**, `pnpm dev` and `pnpm run build:win` delegate here.

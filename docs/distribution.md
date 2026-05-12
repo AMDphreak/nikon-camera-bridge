@@ -7,7 +7,7 @@ This repo ships **binaries from GitHub Releases** for **Windows (x64 + arm64)**,
 | Channel | Format | Architectures | Source |
 |---------|--------|-----------------|--------|
 | **WinGet** | Portable `.zip` | x64, arm64 | GitHub Release asset + generated manifests in `winget-manifests/` |
-| **Homebrew** | Cask `.zip` (macOS `.app` inside) | Intel + Apple Silicon | `release-assets/homebrew/nikon-uvc-ptp-bridge.rb` (generated on release) |
+| **Homebrew** | Cask `.zip` (macOS `.app` inside) | Intel + Apple Silicon | `release-assets/homebrew/nikon-camera-bridge.rb` (generated on release) |
 | **Debian / Ubuntu** | `.deb` | x64, arm64 | GitHub Release `.deb` assets |
 | **Generic Linux** | `.tar.gz` | x64, arm64 | GitHub Release tarball |
 | **Flathub / Flatpak** | Flatpak bundle | x86_64, aarch64 | See `distrib/flatpak/` (template + submission notes) |
@@ -21,7 +21,7 @@ Fully automated publishing to **microsoft/winget-pkgs**, **Homebrew/homebrew-cas
 1. Tag a release (for example `v0.3.0`). The **Release** workflow uploads Windows zips and writes `release-assets/winget-manifests/*.yaml` next to them.
 2. Download the three YAML files from the release (or copy them from a local run after `node scripts/render-winget.mjs`).
 3. Open a PR against **[microsoft/winget-pkgs](https://github.com/microsoft/winget-pkgs)** under  
-   `manifests/a/AMDphreak/NikonUvcPtpBridge/<version>/`  
+   `manifests/a/AMDphreak/NikonCameraBridge/<version>/`  
    or use **`wingetcreate`** / **`Komac`** with the same metadata.
 4. If validation fails on **`NestedInstallerFiles`**, unzip one Windows artifact locally and set `RelativeFilePath` to the real `.exe` path inside the archive.
 
@@ -29,7 +29,7 @@ Optional PAT workflow: add a repository secret (for example `WINGET_PKGS_TOKEN`)
 
 ## Homebrew (macOS)
 
-1. After a tagged release, use the generated **`release-assets/homebrew/nikon-uvc-ptp-bridge.rb`** (from CI) or run:
+1. After a tagged release, use the generated **`release-assets/homebrew/nikon-camera-bridge.rb`** (from CI) or run:
 
    ```bash
    VERSION=0.3.0 ASSETS_DIR=./path/to/assets node scripts/render-homebrew-cask.mjs

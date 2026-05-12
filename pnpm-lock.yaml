@@ -10,10 +10,10 @@ importers:
 
   apps/desktop:
     dependencies:
-      '@nikon-uvc-ptp-bridge/core':
+      '@nikon-camera-bridge/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@nikon-uvc-ptp-bridge/video':
+      '@nikon-camera-bridge/video':
         specifier: workspace:*
         version: link:../../packages/video
     devDependencies:
@@ -60,7 +60,7 @@ importers:
 
   packages/api:
     dependencies:
-      '@nikon-uvc-ptp-bridge/core':
+      '@nikon-camera-bridge/core':
         specifier: workspace:*
         version: link:../core
     devDependencies:

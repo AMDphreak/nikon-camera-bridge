@@ -10,7 +10,7 @@ Flathub expects an AppStream metainfo file, desktop entry, and a manifest that e
 
 ## Submission checklist
 
-1. Confirm **application id** `com.amdphreak.NikonUvcPtpBridge` matches a domain you control (or adjust to a GitHub‑pages `io.github.*` id per Flathub rules).
+1. Confirm **application id** `com.amdphreak.NikonCameraBridge` matches a domain you control (or adjust to a GitHub‑pages `io.github.*` id per Flathub rules).
 2. Add **screenshots** and a **stable release** URL in metainfo.
 3. Open a PR to **[flathub/flathub](https://github.com/flathub/flathub)** with the manifest in a new repository as per Flathub workflow.
 4. Flathub CI builds on **x86_64** and **aarch64**; fix `extra-data` URLs and sha256 for each release.

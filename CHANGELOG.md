@@ -13,19 +13,20 @@
 
 ### Changed
 
+- Repository and product naming: GitHub **`AMDphreak/nikon-camera-bridge`**, pnpm scope **`@nikon-camera-bridge/*`**, desktop app **Nikon Camera Bridge**, release archives **`Nikon.Camera.Bridge-*`**, WinGet **`AMDphreak.NikonCameraBridge`**, Homebrew cask **`nikon-camera-bridge`**. The CI site job sets **`VITE_BASE_PATH`** from **`github.event.repository.name`** so the GitHub Pages base stays aligned with the repo slug.
 - Desktop Windows/Linux/macOS packaging uses **separate `directories.output` staging folders** per architecture so parallel **x64** and **arm64** artifacts do not fight over the same unpacked directory (important on Windows).
 
 ### Fixed
 
 - Linux **`.deb`** builds: electron-builder’s FPM path requires **`homepage`** (and benefits from **`repository`**) in `apps/desktop/package.json`; without it, `deb` failed after `tar.gz` succeeded.
 
-[0.3.0]: https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases/tag/v0.3.0
+[0.3.0]: https://github.com/AMDphreak/nikon-camera-bridge/releases/tag/v0.3.0
 
 ## [0.2.0] - 2026-05-12
 
 ### Added
 
-- pnpm workspace with `@nikon-uvc-ptp-bridge/core`, `@nikon-uvc-ptp-bridge/api`, `@nikon-uvc-ptp-bridge/video`, and `@nikon-uvc-ptp-bridge/desktop`.
+- pnpm workspace: **core**, **api**, **video**, and **desktop** packages with a shared pnpm scope (renamed to **`@nikon-camera-bridge/*`** when the GitHub repository was renamed).
 - HTTP stub server in `packages/api` (`GET /health`, `GET /v1/state`, `POST /v1/command`, `POST /v1/state/mirror`).
 - Component README files with focused Mermaid diagrams; root README documents the full system and layout tables.
 - CI: Ubuntu builds `packages/*`; Windows builds the desktop zip and packs all library `.tgz` files in one job (packing on Linux runners was unreliable with pnpm `pack`).
@@ -39,7 +40,7 @@
 - Electron app moved to `apps/desktop`; root `package.json` is now a private workspace orchestrator.
 - `prepare` runs `pnpm run build:packages` after install so workspace `dist/` exists for the desktop build.
 
-[0.2.0]: https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases/tag/v0.2.0
+[0.2.0]: https://github.com/AMDphreak/nikon-camera-bridge/releases/tag/v0.2.0
 
 ## [0.1.0] - 2026-05-11
 
@@ -51,4 +52,4 @@
 - Release workflow that attaches the Windows zip when a version tag is pushed.
 - Documentation describing the intended layering (physical USB, demux, virtual sink, control API).
 
-[0.1.0]: https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases/tag/v0.1.0
+[0.1.0]: https://github.com/AMDphreak/nikon-camera-bridge/releases/tag/v0.1.0

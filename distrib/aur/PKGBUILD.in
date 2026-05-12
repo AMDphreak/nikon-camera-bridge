@@ -1,34 +1,34 @@
 # Maintainer: copy to AUR as `PKGBUILD` and set pkgver + sha256sums from GitHub Releases.
-# Upstream: https://github.com/AMDphreak/nikon-uvc-ptp-bridge
+# Upstream: https://github.com/AMDphreak/nikon-camera-bridge
 
-pkgname=nikon-uvc-ptp-bridge-bin
+pkgname=nikon-camera-bridge-bin
 pkgver=0.3.0
 pkgrel=1
 pkgdesc='Nikon USB bridge desktop shell (upstream prebuilt tar.gz)'
 arch=('x86_64' 'aarch64')
-url='https://github.com/AMDphreak/nikon-uvc-ptp-bridge'
+url='https://github.com/AMDphreak/nikon-camera-bridge'
 license=('MIT')
 depends=('gtk3' 'nss' 'alsa-lib' 'libdrm' 'mesa' 'libxcb' 'libxkbcommon' 'libappindicator-gtk3')
 options=('!strip')
 
-source_x86_64=("Nikon.UVC-PTP.Bridge-${pkgver}-linux-x64.tar.gz::https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases/download/v${pkgver}/Nikon.UVC-PTP.Bridge-${pkgver}-linux-x64.tar.gz")
-source_aarch64=("Nikon.UVC-PTP.Bridge-${pkgver}-linux-arm64.tar.gz::https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases/download/v${pkgver}/Nikon.UVC-PTP.Bridge-${pkgver}-linux-arm64.tar.gz")
+source_x86_64=("Nikon.Camera.Bridge-${pkgver}-linux-x64.tar.gz::https://github.com/AMDphreak/nikon-camera-bridge/releases/download/v${pkgver}/Nikon.Camera.Bridge-${pkgver}-linux-x64.tar.gz")
+source_aarch64=("Nikon.Camera.Bridge-${pkgver}-linux-arm64.tar.gz::https://github.com/AMDphreak/nikon-camera-bridge/releases/download/v${pkgver}/Nikon.Camera.Bridge-${pkgver}-linux-arm64.tar.gz")
 sha256sums_x86_64=('SKIP')
 sha256sums_aarch64=('SKIP')
 
 package() {
   install -dm755 "${pkgdir}/opt/${pkgname}"
   case "${CARCH}" in
-    x86_64) _src="Nikon.UVC-PTP.Bridge-${pkgver}-linux-x64.tar.gz" ;;
-    aarch64) _src="Nikon.UVC-PTP.Bridge-${pkgver}-linux-arm64.tar.gz" ;;
+    x86_64) _src="Nikon.Camera.Bridge-${pkgver}-linux-x64.tar.gz" ;;
+    aarch64) _src="Nikon.Camera.Bridge-${pkgver}-linux-arm64.tar.gz" ;;
     *) return 1 ;;
   esac
   tar -xzf "${srcdir}/${_src}" -C "${pkgdir}/opt/${pkgname}"
   install -Dm644 /dev/stdin "${pkgdir}/usr/share/applications/${pkgname}.desktop" <<EOF
 [Desktop Entry]
 Type=Application
-Name=Nikon UVC-PTP Bridge
-Exec=/opt/${pkgname}/Nikon UVC-PTP Bridge %u
+Name=Nikon Camera Bridge
+Exec=/opt/${pkgname}/Nikon Camera Bridge %u
 Terminal=false
 Categories=Utility;
 EOF

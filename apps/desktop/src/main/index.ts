@@ -1,8 +1,8 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
-import { createInitialBridgeState, type BridgeState } from '@nikon-uvc-ptp-bridge/core'
-import { VIDEO_ADAPTER_NOTES, VIDEO_ADAPTER_STAGE } from '@nikon-uvc-ptp-bridge/video'
+import { createInitialBridgeState, type BridgeState } from '@nikon-camera-bridge/core'
+import { VIDEO_ADAPTER_NOTES, VIDEO_ADAPTER_STAGE } from '@nikon-camera-bridge/video'
 
 const base = createInitialBridgeState()
 const bridgeState: BridgeState = {
@@ -29,7 +29,7 @@ function createWindow(): void {
     height: 820,
     show: false,
     autoHideMenuBar: true,
-    title: 'Nikon UVC-PTP Bridge',
+    title: 'Nikon Camera Bridge',
     webPreferences: {
       preload: resolvePreloadScript(),
       sandbox: false

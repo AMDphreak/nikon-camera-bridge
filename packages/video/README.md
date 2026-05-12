@@ -1,4 +1,4 @@
-# @nikon-uvc-ptp-bridge/video
+# @nikon-camera-bridge/video
 
 **Video plane (virtual webcam).** This package will host the **Media Foundation** (and any native glue) that registers a **virtual camera** device so Teams, Zoom, and OBS see a normal Windows camera while the **bridge core** supplies frames.
 
@@ -13,7 +13,7 @@ flowchart TB
     Zoom[Consuming apps]
   end
 
-  subgraph video["@nikon-uvc-ptp-bridge/video"]
+  subgraph video["@nikon-camera-bridge/video"]
     Reg[Virtual camera registration planned]
     Pump[Frame pump from core planned]
   end
@@ -26,7 +26,7 @@ flowchart TB
 ## Build
 
 ```powershell
-pnpm --filter @nikon-uvc-ptp-bridge/video run build
+pnpm --filter @nikon-camera-bridge/video run build
 ```
 
-See the [repository root README](../../README.md) for how this sits beside `@nikon-uvc-ptp-bridge/api`.
+See the [repository root README](../../README.md) for how this sits beside `@nikon-camera-bridge/api`.

@@ -1,5 +1,5 @@
 {
-  "name": "nikon-uvc-ptp-bridge",
+  "name": "nikon-camera-bridge",
   "version": "0.3.0",
   "private": true,
   "description": "Monorepo: Nikon USB bridge core, control API, MF virtual camera adapter, and desktop shell",
@@ -12,21 +12,21 @@
   },
   "scripts": {
     "prepare": "pnpm run build:packages",
-    "build:packages": "pnpm --filter @nikon-uvc-ptp-bridge/core run build && pnpm --filter @nikon-uvc-ptp-bridge/api run build && pnpm --filter @nikon-uvc-ptp-bridge/video run build",
-    "typecheck:packages": "pnpm --filter @nikon-uvc-ptp-bridge/core run typecheck && pnpm --filter @nikon-uvc-ptp-bridge/api run typecheck && pnpm --filter @nikon-uvc-ptp-bridge/video run typecheck",
-    "dev": "pnpm --filter @nikon-uvc-ptp-bridge/desktop dev",
-    "dev:api": "pnpm --filter @nikon-uvc-ptp-bridge/api dev",
-    "build": "pnpm run build:packages && pnpm --filter @nikon-uvc-ptp-bridge/desktop run build",
-    "build:win": "pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:win",
-    "build:linux": "pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:linux",
-    "build:mac": "pnpm --filter @nikon-uvc-ptp-bridge/desktop run build:mac",
+    "build:packages": "pnpm --filter @nikon-camera-bridge/core run build && pnpm --filter @nikon-camera-bridge/api run build && pnpm --filter @nikon-camera-bridge/video run build",
+    "typecheck:packages": "pnpm --filter @nikon-camera-bridge/core run typecheck && pnpm --filter @nikon-camera-bridge/api run typecheck && pnpm --filter @nikon-camera-bridge/video run typecheck",
+    "dev": "pnpm --filter @nikon-camera-bridge/desktop dev",
+    "dev:api": "pnpm --filter @nikon-camera-bridge/api dev",
+    "build": "pnpm run build:packages && pnpm --filter @nikon-camera-bridge/desktop run build",
+    "build:win": "pnpm --filter @nikon-camera-bridge/desktop run build:win",
+    "build:linux": "pnpm --filter @nikon-camera-bridge/desktop run build:linux",
+    "build:mac": "pnpm --filter @nikon-camera-bridge/desktop run build:mac",
     "typecheck": "pnpm -r run typecheck",
-    "start:api": "pnpm --filter @nikon-uvc-ptp-bridge/api start",
+    "start:api": "pnpm --filter @nikon-camera-bridge/api start",
     "render:winget": "node scripts/render-winget.mjs",
     "render:brew": "node scripts/render-homebrew-cask.mjs",
     "pack:packages": "node scripts/pack-workspace.mjs",
-    "build:site": "pnpm --filter @nikon-uvc-ptp-bridge/site run build",
-    "dev:site": "pnpm --filter @nikon-uvc-ptp-bridge/site run dev"
+    "build:site": "pnpm --filter @nikon-camera-bridge/site run build",
+    "dev:site": "pnpm --filter @nikon-camera-bridge/site run dev"
   },
   "engines": {
     "node": ">=20"

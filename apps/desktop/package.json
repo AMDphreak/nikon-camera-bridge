@@ -1,11 +1,11 @@
 {
-  "name": "@nikon-uvc-ptp-bridge/desktop",
+  "name": "@nikon-camera-bridge/desktop",
   "version": "0.3.0",
-  "description": "Electron desktop shell for the Nikon UVC-PTP bridge",
-  "homepage": "https://github.com/AMDphreak/nikon-uvc-ptp-bridge",
+  "description": "Electron desktop shell for Nikon Camera Bridge",
+  "homepage": "https://github.com/AMDphreak/nikon-camera-bridge",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AMDphreak/nikon-uvc-ptp-bridge.git"
+    "url": "https://github.com/AMDphreak/nikon-camera-bridge.git"
   },
   "type": "module",
   "main": "out/main/index.js",
@@ -19,8 +19,8 @@
     "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit"
   },
   "dependencies": {
-    "@nikon-uvc-ptp-bridge/core": "workspace:*",
-    "@nikon-uvc-ptp-bridge/video": "workspace:*"
+    "@nikon-camera-bridge/core": "workspace:*",
+    "@nikon-camera-bridge/video": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.5",
@@ -34,9 +34,9 @@
   "license": "MIT",
   "build": {
     "electronVersion": "33.4.11",
-    "appId": "com.amdphreak.nikonUvcPtpBridge",
-    "productName": "Nikon UVC-PTP Bridge",
-    "artifactName": "Nikon.UVC-PTP.Bridge-${version}-${os}-${arch}.${ext}",
+    "appId": "com.amdphreak.nikonCameraBridge",
+    "productName": "Nikon Camera Bridge",
+    "artifactName": "Nikon.Camera.Bridge-${version}-${os}-${arch}.${ext}",
     "directories": {
       "output": "release",
       "buildResources": "build"

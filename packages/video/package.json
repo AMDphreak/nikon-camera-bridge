@@ -1,5 +1,5 @@
 {
-  "name": "@nikon-uvc-ptp-bridge/video",
+  "name": "@nikon-camera-bridge/video",
   "version": "0.3.0",
   "description": "Media Foundation virtual camera adapter (planned); placeholder exports for workspace wiring",
   "type": "module",

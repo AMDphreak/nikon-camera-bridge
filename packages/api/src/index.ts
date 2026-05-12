@@ -1,5 +1,5 @@
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http'
-import { createInitialBridgeState, type BridgeState } from '@nikon-uvc-ptp-bridge/core'
+import { createInitialBridgeState, type BridgeState } from '@nikon-camera-bridge/core'
 
 const json = (res: ServerResponse, status: number, body: unknown) => {
   res.writeHead(status, { 'content-type': 'application/json; charset=utf-8' })

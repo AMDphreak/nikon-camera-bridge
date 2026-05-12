@@ -8,7 +8,7 @@ import { join } from 'node:path'
 
 const version = (process.env.VERSION ?? '').replace(/^v/, '')
 const root = process.env.ASSETS_DIR ?? 'release-assets'
-const outFile = join(root, 'homebrew', 'nikon-uvc-ptp-bridge.rb')
+const outFile = join(root, 'homebrew', 'nikon-camera-bridge.rb')
 
 if (!version) {
   console.error('Set VERSION')
@@ -16,7 +16,7 @@ if (!version) {
 }
 
 const owner = 'AMDphreak'
-const repo = 'nikon-uvc-ptp-bridge'
+const repo = 'nikon-camera-bridge'
 const tag = `v${version}`
 const base = `https://github.com/${owner}/${repo}/releases/download/${tag}`
 
@@ -25,8 +25,8 @@ async function sha256(path) {
   return createHash('sha256').update(buf).digest('hex')
 }
 
-const intelName = `Nikon.UVC-PTP.Bridge-${version}-mac-x64.zip`
-const armName = `Nikon.UVC-PTP.Bridge-${version}-mac-arm64.zip`
+const intelName = `Nikon.Camera.Bridge-${version}-mac-x64.zip`
+const armName = `Nikon.Camera.Bridge-${version}-mac-arm64.zip`
 
 let intelSha
 let armSha
@@ -43,7 +43,7 @@ try {
   process.exit(1)
 }
 
-const fixed = `cask "nikon-uvc-ptp-bridge" do
+const fixed = `cask "nikon-camera-bridge" do
   version "${version}"
   sha256 arm:   "${armSha}",
          intel: "${intelSha}"
@@ -58,13 +58,13 @@ const fixed = `cask "nikon-uvc-ptp-bridge" do
         verified: "github.com/${owner}/${repo}/"
   end
 
-  name "Nikon UVC-PTP Bridge"
+  name "Nikon Camera Bridge"
   desc "Desktop shell for the Nikon USB bridge (virtual camera + control API roadmap)"
   homepage "https://github.com/${owner}/${repo}"
 
   depends_on macos: ">= :catalina"
 
-  app "Nikon UVC-PTP Bridge.app"
+  app "Nikon Camera Bridge.app"
 
   caveats <<~EOS
     This build is not Apple-notarized. Control-click the app and choose Open on first launch if Gatekeeper blocks it.

@@ -1,5 +1,5 @@
 {
-  "name": "@nikon-uvc-ptp-bridge/api",
+  "name": "@nikon-camera-bridge/api",
   "version": "0.3.0",
   "description": "HTTP control surface for the Nikon bridge (stub routes; future PTP command mapping)",
   "type": "module",
@@ -22,7 +22,7 @@
     "dev": "tsx watch src/cli.ts"
   },
   "dependencies": {
-    "@nikon-uvc-ptp-bridge/core": "workspace:*"
+    "@nikon-camera-bridge/core": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.5",

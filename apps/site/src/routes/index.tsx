@@ -3,7 +3,7 @@ import { Title } from "@solidjs/meta";
 export default function Home() {
   return (
     <main class="hero">
-      <Title>Nikon UVC–PTP Bridge</Title>
+      <Title>Nikon Camera Bridge</Title>
       <p class="eyebrow">Windows-first · x64 &amp; arm64 · open source</p>
       <h1 class="hero-title">One bridge for UVC video and camera control</h1>
       <p class="hero-lead">
@@ -15,7 +15,7 @@ export default function Home() {
       <div class="cta-row">
         <a
           class="btn primary"
-          href="https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases"
+          href="https://github.com/AMDphreak/nikon-camera-bridge/releases"
           target="_blank"
           rel="noreferrer"
         >
@@ -23,7 +23,7 @@ export default function Home() {
         </a>
         <a
           class="btn ghost"
-          href="https://github.com/AMDphreak/nikon-uvc-ptp-bridge"
+          href="https://github.com/AMDphreak/nikon-camera-bridge"
           target="_blank"
           rel="noreferrer"
         >

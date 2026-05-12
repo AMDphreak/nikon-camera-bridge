@@ -1,5 +1,5 @@
 {
-  "name": "@nikon-uvc-ptp-bridge/site",
+  "name": "@nikon-camera-bridge/site",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,4 +1,4 @@
-# Nikon UVC-PTP Bridge (monorepo)
+# Nikon Camera Bridge (monorepo)
 
 Windows-first **bridge** that will consolidate **Nikon USB webcam (UVC)** access with **PTP-style control** in one logical service, then **fan out video** through a **virtual camera** (Media Foundation) while exposing a **separate HTTP control API** for focus, exposure, and related commands.
 
@@ -18,12 +18,12 @@ This repository is a **pnpm workspace**: shared **core** types, a headless **HTT
 
 The [`apps/site`](./apps/site) app builds to **static HTML** (prerendered `/` and `/about`). In **Settings → Pages**, set **Build and deployment** source to **GitHub Actions**. Pushes to `main` that touch `apps/site/**`, the Pages workflow, or the root lockfile run [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) and publish to:
 
-`https://AMDphreak.github.io/nikon-uvc-ptp-bridge/`
+`https://AMDphreak.github.io/nikon-camera-bridge/`
 
 Production-style preview (matches the Pages base path):
 
 ```powershell
-$env:VITE_BASE_PATH="/nikon-uvc-ptp-bridge/"
+$env:VITE_BASE_PATH="/nikon-camera-bridge/"
 pnpm run build:site
 pnpm dlx serve apps/site/.output/public
 ```
@@ -90,7 +90,7 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-  subgraph repo["nikon-uvc-ptp-bridge"]
+  subgraph repo["nikon-camera-bridge"]
     pkg_core["packages/core"]
     pkg_video["packages/video"]
     pkg_api["packages/api"]

@@ -1,8 +1,8 @@
-# @nikon-uvc-ptp-bridge/api
+# @nikon-camera-bridge/api
 
 **Control plane (HTTP).** Exposes a small JSON API on `127.0.0.1` for health checks and future **PTP-style commands** (focus, exposure, and so on). Consumer apps and automation talk here; they do **not** send those commands through the virtual webcam path.
 
-Zoom/Teams stay dumb clients of the **video** adapter (`@nikon-uvc-ptp-bridge/video`); anything that needs Nikon semantics should call **this API** (or IPC that wraps it).
+Zoom/Teams stay dumb clients of the **video** adapter (`@nikon-camera-bridge/video`); anything that needs Nikon semantics should call **this API** (or IPC that wraps it).
 
 ## Diagram
 
@@ -13,11 +13,11 @@ flowchart TB
     FutureGUI[Future headless core]
   end
 
-  subgraph api["@nikon-uvc-ptp-bridge/api"]
+  subgraph api["@nikon-camera-bridge/api"]
     HTTP[HTTP JSON routes]
   end
 
-  subgraph core["@nikon-uvc-ptp-bridge/core"]
+  subgraph core["@nikon-camera-bridge/core"]
     Types[Types and state helpers]
   end
 
@@ -53,7 +53,7 @@ $env:NIKON_BRIDGE_API_PORT = "39999"; pnpm run start:api
 ## Build
 
 ```powershell
-pnpm --filter @nikon-uvc-ptp-bridge/api run build
+pnpm --filter @nikon-camera-bridge/api run build
 ```
 
 See the [repository root README](../../README.md) for the full architecture.
