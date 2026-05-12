@@ -8,7 +8,7 @@ import { join } from 'node:path'
 
 const version = (process.env.VERSION ?? '').replace(/^v/, '')
 const root = process.env.ASSETS_DIR ?? 'release-assets'
-const outFile = join(root, 'homebrew', 'nikon-camera-bridge.rb')
+const outFile = join(root, 'homebrew', 'webcam-bridge-for-nikon.rb')
 
 if (!version) {
   console.error('Set VERSION')
@@ -25,8 +25,8 @@ async function sha256(path) {
   return createHash('sha256').update(buf).digest('hex')
 }
 
-const intelName = `Nikon.Camera.Bridge-${version}-mac-x64.dmg`
-const armName = `Nikon.Camera.Bridge-${version}-mac-arm64.dmg`
+const intelName = `Webcam.Bridge.for.Nikon-${version}-mac-x64.dmg`
+const armName = `Webcam.Bridge.for.Nikon-${version}-mac-arm64.dmg`
 
 let intelSha
 let armSha
@@ -43,7 +43,7 @@ try {
   process.exit(1)
 }
 
-const fixed = `cask "nikon-camera-bridge" do
+const fixed = `cask "webcam-bridge-for-nikon" do
   version "${version}"
   sha256 arm:   "${armSha}",
          intel: "${intelSha}"
@@ -58,13 +58,13 @@ const fixed = `cask "nikon-camera-bridge" do
         verified: "github.com/${owner}/${repo}/"
   end
 
-  name "Nikon Camera Bridge"
+  name "Webcam Bridge for Nikon"
   desc "Desktop shell for the Nikon USB bridge (virtual camera + control API roadmap)"
   homepage "https://github.com/${owner}/${repo}"
 
   depends_on macos: ">= :catalina"
 
-  app "Nikon Camera Bridge.app"
+  app "Webcam Bridge for Nikon.app"
 
   caveats <<~EOS
     This build is not Apple-notarized. Control-click the app and choose Open on first launch if Gatekeeper blocks it.

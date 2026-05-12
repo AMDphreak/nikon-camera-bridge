@@ -29,7 +29,7 @@ function createWindow(): void {
     height: 820,
     show: false,
     autoHideMenuBar: true,
-    title: 'Nikon Camera Bridge',
+    title: 'Webcam Bridge for Nikon',
     webPreferences: {
       preload: resolvePreloadScript(),
       sandbox: false

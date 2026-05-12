@@ -1,7 +1,7 @@
 {
   "name": "@nikon-camera-bridge/desktop",
   "version": "0.3.0",
-  "description": "Electron desktop shell for Nikon Camera Bridge",
+  "description": "Electron desktop shell for Webcam Bridge for Nikon",
   "homepage": "https://github.com/AMDphreak/nikon-camera-bridge",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   "scripts": {
     "dev": "electron-vite dev",
     "build": "electron-vite build",
-    "build:win": "electron-vite build && electron-builder --win msi --x64 --publish never --config.directories.output=release/win-x64-msi && electron-builder --win msi --arm64 --publish never --config.directories.output=release/win-arm64-msi && electron-builder --win zip --x64 --publish never --config.directories.output=release/win-x64-zip && electron-builder --win zip --arm64 --publish never --config.directories.output=release/win-arm64-zip",
+    "build:win": "electron-vite build && electron-builder --win msi --x64 --publish never --config.directories.output=release/win-x64-msi && electron-builder --win msi --arm64 --publish never --config.directories.output=release/win-arm64-msi && electron-builder --win zip --x64 --publish never --config.directories.output=release/win-x64-zip && electron-builder --win zip --arm64 --publish never --config.directories.output=release/win-arm64-zip && electron-builder --win msix --x64 --publish never --config.directories.output=release/win-x64-msix && electron-builder --win msix --arm64 --publish never --config.directories.output=release/win-arm64-msix",
     "build:linux": "electron-vite build && electron-builder --linux deb --x64 --publish never --config.directories.output=release/linux-x64-deb && electron-builder --linux deb --arm64 --publish never --config.directories.output=release/linux-arm64-deb && electron-builder --linux AppImage --x64 --publish never --config.directories.output=release/linux-x64-appimage && electron-builder --linux AppImage --arm64 --publish never --config.directories.output=release/linux-arm64-appimage && electron-builder --linux flatpak --x64 --publish never --config.directories.output=release/linux-x64-flatpak && electron-builder --linux flatpak --arm64 --publish never --config.directories.output=release/linux-arm64-flatpak",
     "build:mac": "electron-vite build && electron-builder --mac dmg --x64 --publish never --config.directories.output=release/mac-x64-dmg && electron-builder --mac dmg --arm64 --publish never --config.directories.output=release/mac-arm64-dmg",
     "preview": "electron-vite preview",
@@ -34,23 +34,31 @@
   "license": "MIT",
   "build": {
     "electronVersion": "33.4.11",
-    "appId": "com.amdphreak.nikonCameraBridge",
-    "productName": "Nikon Camera Bridge",
-    "artifactName": "Nikon.Camera.Bridge-${version}-${os}-${arch}.${ext}",
+    "appId": "com.amdphreak.webcambridgefornikon",
+    "productName": "Webcam Bridge for Nikon",
+    "artifactName": "Webcam.Bridge.for.Nikon-${version}-${os}-${arch}.${ext}",
     "directories": {
       "output": "release",
       "buildResources": "build"
     },
     "files": ["out/**/*"],
     "win": {
-      "target": ["msi", "zip"],
+      "target": ["msi", "zip", "msix"],
       "signAndEditExecutable": false
+    },
+    "msix": {
+      "identityName": "AMDphreak.WebcamBridgeforNikon",
+      "publisher": "CN=6AC37873-9F91-4911-9411-D11B8BA63A5C",
+      "publisherDisplayName": "AMDphreak",
+      "applicationId": "WebcamBridgeforNikon",
+      "backgroundColor": "#1a1a1a",
+      "languages": ["en-US"]
     },
     "linux": {
       "target": ["deb", "AppImage", "flatpak"],
       "category": "Utility",
       "maintainer": "AMDphreak",
-      "synopsis": "Nikon USB webcam bridge and control shell"
+      "synopsis": "Webcam bridge and control shell for Nikon USB cameras"
     },
     "flatpak": {
       "runtime": "org.freedesktop.Platform",

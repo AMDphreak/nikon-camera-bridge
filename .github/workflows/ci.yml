@@ -135,6 +135,7 @@ jobs:
           name: bridge-windows
           path: |
             apps/desktop/release/**/*.msi
+            apps/desktop/release/**/*.msix
             apps/desktop/release/**/*.zip
             dist-pack/*.tgz
 

@@ -16,14 +16,21 @@ export default function App() {
       base={routerBase()}
       root={props => (
         <MetaProvider>
-          <Title>Nikon Camera Bridge</Title>
+          <Title>Webcam Bridge for Nikon</Title>
           <header class="site-header">
             <nav class="site-nav" aria-label="Primary">
               <A href="/" class="brand" end>
-                Nikon Camera Bridge
+                Webcam Bridge for Nikon
               </A>
               <span class="nav-links">
                 <A href="/about">Download &amp; platforms</A>
+                <a
+                  href="https://apps.microsoft.com/detail/9n90q0c8f6zw"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Microsoft Store
+                </a>
                 <a
                   href="https://github.com/AMDphreak/nikon-camera-bridge"
                   target="_blank"

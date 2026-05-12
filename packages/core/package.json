@@ -1,7 +1,7 @@
 {
   "name": "@nikon-camera-bridge/core",
   "version": "0.3.0",
-  "description": "Shared types and in-process bridge state for Nikon Camera Bridge",
+  "description": "Shared types and in-process bridge state for Webcam Bridge for Nikon",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

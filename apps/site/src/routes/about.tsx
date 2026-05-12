@@ -3,7 +3,7 @@ import { Title } from "@solidjs/meta";
 export default function About() {
   return (
     <main class="page prose">
-      <Title>Download &amp; platforms — Nikon Camera Bridge</Title>
+      <Title>Download &amp; platforms — Webcam Bridge for Nikon</Title>
       <h1>Download &amp; platforms</h1>
       <p>
         Desktop installers and portable archives are published on{" "}

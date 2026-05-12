@@ -12,7 +12,7 @@ export default createHandler(() => (
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta
             name="description"
-            content="Bridge Nikon USB webcam (UVC) with PTP-style control, virtual camera output, and a JSON control API."
+            content="Webcam Bridge for Nikon: bridge your Nikon USB webcam into Zoom, Teams, or OBS, with HTTP control for focus and exposure."
           />
           <link rel="icon" type="image/svg+xml" href={faviconHref} />
           {assets}

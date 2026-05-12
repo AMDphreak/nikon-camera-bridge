@@ -1,4 +1,4 @@
-# Nikon Camera Bridge (monorepo)
+# Webcam Bridge for Nikon (monorepo)
 
 Windows-first **bridge** that will consolidate **Nikon USB webcam (UVC)** access with **PTP-style control** in one logical service, then **fan out video** through a **virtual camera** (Media Foundation) while exposing a **separate HTTP control API** for focus, exposure, and related commands.
 
@@ -153,7 +153,7 @@ pnpm typecheck
 pnpm build
 ```
 
-**Windows desktop** (x64 + arm64 **`.msi`** installers and portable **`.zip`**, unsigned):
+**Windows desktop** (x64 + arm64 **`.msi`**, **`.msix`**, and portable **`.zip`**; unsigned):
 
 ```powershell
 pnpm run build:win
@@ -183,7 +183,7 @@ Electron writes each OS/arch combination under `apps/desktop/release/<staging-fo
 
 ## CI and releases
 
-- **CI** (`.github/workflows/ci.yml`): Ubuntu builds `packages/*` and the **static marketing site** (`pnpm run build:site` with the GitHub Pages base path). A **desktop matrix** on **Windows**, **Ubuntu**, and **macOS** typechecks the workspace, runs `pnpm build`, then packages **x64 + arm64** artifacts per OS (Windows **MSI + zip**, Linux **deb + AppImage + flatpak**, macOS **DMG**). The Windows leg also runs **`pnpm run pack:packages`** and uploads **`bridge-windows`** (MSI, zips, library `.tgz`). Linux and macOS legs upload **`bridge-linux`** and **`bridge-macos`**.
+- **CI** (`.github/workflows/ci.yml`): Ubuntu builds `packages/*` and the **static marketing site** (`pnpm run build:site` with the GitHub Pages base path). A **desktop matrix** on **Windows**, **Ubuntu**, and **macOS** typechecks the workspace, runs `pnpm build`, then packages **x64 + arm64** artifacts per OS (Windows **MSI + MSIX + zip**, Linux **deb + AppImage + flatpak**, macOS **DMG**). The Windows leg also runs **`pnpm run pack:packages`** and uploads **`bridge-windows`** (MSI, MSIX, zips, library `.tgz`). Linux and macOS legs upload **`bridge-linux`** and **`bridge-macos`**.
 - **Pages** (`.github/workflows/pages.yml`): On pushes to `main`, builds `apps/site` and deploys the prerendered bundle to **GitHub Pages** (enable **Pages → GitHub Actions** in repo settings first).
 - **Release** (`.github/workflows/release.yml`): On `v*` tags, merges all `bridge-*` artifacts, runs **`scripts/render-winget.mjs`** and **`scripts/render-homebrew-cask.mjs`**, and publishes everything under **`release-assets/**`** (binaries, WinGet YAML, Homebrew cask Ruby) to the GitHub Release.
 

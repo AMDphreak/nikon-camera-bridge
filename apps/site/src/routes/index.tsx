@@ -3,7 +3,7 @@ import { Title } from "@solidjs/meta";
 export default function Home() {
   return (
     <main class="hero">
-      <Title>Nikon Camera Bridge</Title>
+      <Title>Webcam Bridge for Nikon</Title>
       <p class="eyebrow">Windows-first · x64 &amp; arm64 · open source</p>
       <h1 class="hero-title">One bridge for UVC video and camera control</h1>
       <p class="hero-lead">

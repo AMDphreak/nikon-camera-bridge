@@ -1,6 +1,6 @@
 # Marketing site (`apps/site`)
 
-Small **[SolidStart](https://start.solidjs.com/)** (**1.x** + **Vinxi**) site for **Nikon Camera Bridge**. The production build uses Nitro’s **`static`** preset with **prerendered** routes `/` and `/about`.
+Small **[SolidStart](https://start.solidjs.com/)** (**1.x** + **Vinxi**) site for **Webcam Bridge for Nikon**. The production build uses Nitro’s **`static`** preset with **prerendered** routes `/` and `/about`.
 
 ## Commands
 

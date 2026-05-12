@@ -6,8 +6,9 @@ This repo ships **binaries from GitHub Releases** for **Windows (x64 + arm64)**,
 
 | Channel | Format | Architectures | Source |
 |---------|--------|-----------------|--------|
-| **WinGet** | **`.msi`** (primary) + portable `.zip` | x64, arm64 | GitHub Release assets + generated manifests in `winget-manifests/` |
-| **Homebrew** | Cask **`.dmg`** | Intel + Apple Silicon | `release-assets/homebrew/nikon-camera-bridge.rb` (generated on release) |
+| **Microsoft Store** | MSIX (from CI; upload in Partner Center) | x64, arm64 | [Store listing](https://apps.microsoft.com/detail/9n90q0c8f6zw) · package **`AMDphreak.WebcamBridgeforNikon`** |
+| **WinGet** | **`.msi`**, **`.msix`**, portable **`.zip`** | x64, arm64 | GitHub Release assets + generated manifests in `winget-manifests/` |
+| **Homebrew** | Cask **`.dmg`** | Intel + Apple Silicon | `release-assets/homebrew/webcam-bridge-for-nikon.rb` (generated on release) |
 | **Debian / Ubuntu** | `.deb` | x64, arm64 | GitHub Release `.deb` assets |
 | **AppImage** | `.AppImage` | x64, arm64 | GitHub Release (no root install required) |
 | **Flatpak (bundle)** | `.flatpak` single-file | x64, arm64 | Built in **Release** / **CI** via electron-builder; Flathub submission still uses `distrib/flatpak/` |
@@ -16,20 +17,26 @@ This repo ships **binaries from GitHub Releases** for **Windows (x64 + arm64)**,
 
 Fully automated publishing to **microsoft/winget-pkgs**, **Homebrew/homebrew-cask**, and **Flathub** requires **maintainer accounts**, **tokens**, and **human review** on those ecosystems. This repository automates **building**, **hashing**, and **attaching** artifacts plus **rendering** manifest snippets you can copy into upstream PRs.
 
+## Microsoft Store
+
+- **Store product:** [apps.microsoft.com/detail/9n90q0c8f6zw](https://apps.microsoft.com/detail/9n90q0c8f6zw) (ID **`9N90Q0C8F6ZW`**).
+- **MSIX identity** in `apps/desktop/package.json` → `build.msix`: **`identityName`** `AMDphreak.WebcamBridgeforNikon`, **`publisher`** `CN=6AC37873-9F91-4911-9411-D11B8BA63A5C`, **`applicationId`** `WebcamBridgeforNikon`.
+- **CI / Release** builds **`.msix`** per architecture alongside MSI and zip. **Signing:** Partner Center ingestion often uses your publisher certificate; for local or GitHub builds you may need a **`.pfx`** (and password) from Partner Center and wire it through electron-builder’s Windows signing options—if the MSIX step fails on the runner, add secrets and configure signing per [Microsoft’s MSIX signing guidance](https://learn.microsoft.com/en-us/windows/msix/package/create-certificate-package-signing).
+
 ## WinGet (Windows Package Manager)
 
-1. Tag a release (for example `v0.3.0`). The **Release** workflow uploads Windows **`.msi`** and portable **`.zip`** files and writes `release-assets/winget-manifests/*.yaml` next to them.
+1. Tag a release (for example `v0.3.0`). The **Release** workflow uploads Windows **`.msi`**, **`.msix`**, and portable **`.zip`** files and writes `release-assets/winget-manifests/*.yaml` next to them.
 2. Download the three YAML files from the release (or copy them from a local run after `node scripts/render-winget.mjs`).
 3. Open a PR against **[microsoft/winget-pkgs](https://github.com/microsoft/winget-pkgs)** under  
-   `manifests/a/AMDphreak/NikonCameraBridge/<version>/`  
+   `manifests/a/AMDphreak/WebcamBridgeforNikon/<version>/`  
    or use **`wingetcreate`** / **`Komac`** with the same metadata.
-4. If validation fails on **`NestedInstallerFiles`** for the portable zip entries, unzip one Windows artifact locally and set `RelativeFilePath` to the real `.exe` path inside the archive. **MSI** entries do not use nested installer metadata.
+4. If validation fails on **`NestedInstallerFiles`** for the portable zip entries, unzip one Windows artifact locally and set `RelativeFilePath` to the real `.exe` path inside the archive. **MSI** and **MSIX** entries do not use nested installer metadata.
 
 Optional PAT workflow: add a repository secret (for example `WINGET_PKGS_TOKEN`) and a `workflow_dispatch` job that forks `winget-pkgs`, copies the manifests, and opens a PR—only worth doing once the package id is accepted.
 
 ## Homebrew (macOS)
 
-1. After a tagged release, use the generated **`release-assets/homebrew/nikon-camera-bridge.rb`** (from CI) or run:
+1. After a tagged release, use the generated **`release-assets/homebrew/webcam-bridge-for-nikon.rb`** (from CI) or run:
 
    ```bash
    VERSION=0.3.0 ASSETS_DIR=./path/to/assets node scripts/render-homebrew-cask.mjs

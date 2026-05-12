@@ -108,6 +108,7 @@ jobs:
           name: bridge-windows
           path: |
             apps/desktop/release/**/*.msi
+            apps/desktop/release/**/*.msix
             apps/desktop/release/**/*.zip
             dist-pack/*.tgz
 
@@ -144,7 +145,7 @@ jobs:
         run: |
           mkdir -p release-assets
           find _dl -type f \( \
-            -name '*.zip' -o -name '*.tgz' -o -name '*.deb' -o -name '*.msi' -o -name '*.dmg' \
+            -name '*.zip' -o -name '*.tgz' -o -name '*.deb' -o -name '*.msi' -o -name '*.msix' -o -name '*.dmg' \
             -o -name '*.AppImage' -o -name '*.flatpak' \
           \) -print -exec cp {} release-assets/ \;
           ls -la release-assets

@@ -2,7 +2,7 @@
   "name": "nikon-camera-bridge",
   "version": "0.3.0",
   "private": true,
-  "description": "Bridge your Nikon USB webcam into Zoom, Teams, or OBS as a virtual camera, with a small HTTP API for focus, exposure, and related settings. Windows first, open source.",
+  "description": "Webcam Bridge for Nikon: bridge your Nikon USB webcam into Zoom, Teams, or OBS as a virtual camera, with a small HTTP API for focus, exposure, and related settings. Windows first, open source.",
   "author": "AMDphreak",
   "license": "MIT",
   "type": "module",

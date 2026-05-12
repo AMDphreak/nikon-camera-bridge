@@ -1,25 +1,25 @@
 # Maintainer: copy to AUR as `PKGBUILD` and set pkgver + sha256sums from GitHub Releases.
 # Upstream: https://github.com/AMDphreak/nikon-camera-bridge
 
-pkgname=nikon-camera-bridge-bin
+pkgname=webcam-bridge-for-nikon-bin
 pkgver=0.3.0
 pkgrel=1
-pkgdesc='Nikon USB bridge desktop shell (upstream prebuilt .deb)'
+pkgdesc='Webcam Bridge for Nikon desktop shell (upstream prebuilt .deb)'
 arch=('x86_64' 'aarch64')
 url='https://github.com/AMDphreak/nikon-camera-bridge'
 license=('MIT')
 depends=('gtk3' 'nss' 'alsa-lib' 'libdrm' 'mesa' 'libxcb' 'libxkbcommon' 'libappindicator-gtk3')
 options=('!strip')
 
-source_x86_64=("Nikon.Camera.Bridge-${pkgver}-linux-x64.deb::https://github.com/AMDphreak/nikon-camera-bridge/releases/download/v${pkgver}/Nikon.Camera.Bridge-${pkgver}-linux-x64.deb")
-source_aarch64=("Nikon.Camera.Bridge-${pkgver}-linux-arm64.deb::https://github.com/AMDphreak/nikon-camera-bridge/releases/download/v${pkgver}/Nikon.Camera.Bridge-${pkgver}-linux-arm64.deb")
+source_x86_64=("Webcam.Bridge.for.Nikon-${pkgver}-linux-x64.deb::https://github.com/AMDphreak/nikon-camera-bridge/releases/download/v${pkgver}/Webcam.Bridge.for.Nikon-${pkgver}-linux-x64.deb")
+source_aarch64=("Webcam.Bridge.for.Nikon-${pkgver}-linux-arm64.deb::https://github.com/AMDphreak/nikon-camera-bridge/releases/download/v${pkgver}/Webcam.Bridge.for.Nikon-${pkgver}-linux-arm64.deb")
 sha256sums_x86_64=('SKIP')
 sha256sums_aarch64=('SKIP')
 
 package() {
   case "${CARCH}" in
-    x86_64) _deb="Nikon.Camera.Bridge-${pkgver}-linux-x64.deb" ;;
-    aarch64) _deb="Nikon.Camera.Bridge-${pkgver}-linux-arm64.deb" ;;
+    x86_64) _deb="Webcam.Bridge.for.Nikon-${pkgver}-linux-x64.deb" ;;
+    aarch64) _deb="Webcam.Bridge.for.Nikon-${pkgver}-linux-arm64.deb" ;;
     *) return 1 ;;
   esac
   bsdtar -xf "${srcdir}/${_deb}" -C "${pkgdir}"
