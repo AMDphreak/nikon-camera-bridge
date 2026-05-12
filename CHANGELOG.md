@@ -4,6 +4,8 @@
 
 ### Added
 
+- **`apps/site`**: SolidStart (**1.x** + Vinxi) marketing site with prerendered **`/`** and **`/about`**, GitHub Pages base path via `VITE_BASE_PATH`, and [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) for deployment from `main` (enable **Pages → GitHub Actions** in repo settings).
+- Root scripts **`pnpm run build:site`** and **`pnpm run dev:site`**.
 - Desktop builds for **Linux** (`.tar.gz` + `.deb`, x64 + arm64) and **macOS** (`.zip`, x64 + arm64) alongside **Windows** (`.zip`, x64 + arm64); `artifactName` includes OS and arch.
 - `docs/distribution.md` with WinGet, Homebrew, Debian/Flatpak, and AUR maintainer flows.
 - `scripts/render-winget.mjs` and `scripts/render-homebrew-cask.mjs`; release workflow attaches generated manifests next to binaries.

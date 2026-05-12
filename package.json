@@ -7,7 +7,7 @@
   "license": "MIT",
   "type": "module",
   "pnpm": {
-    "onlyBuiltDependencies": ["electron", "esbuild"],
+    "onlyBuiltDependencies": ["electron", "esbuild", "@parcel/watcher"],
     "confirmModulesPurge": false
   },
   "scripts": {
@@ -24,7 +24,9 @@
     "start:api": "pnpm --filter @nikon-uvc-ptp-bridge/api start",
     "render:winget": "node scripts/render-winget.mjs",
     "render:brew": "node scripts/render-homebrew-cask.mjs",
-    "pack:packages": "node scripts/pack-workspace.mjs"
+    "pack:packages": "node scripts/pack-workspace.mjs",
+    "build:site": "pnpm --filter @nikon-uvc-ptp-bridge/site run build",
+    "dev:site": "pnpm --filter @nikon-uvc-ptp-bridge/site run dev"
   },
   "engines": {
     "node": ">=20"

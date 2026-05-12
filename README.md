@@ -2,7 +2,7 @@
 
 Windows-first **bridge** that will consolidate **Nikon USB webcam (UVC)** access with **PTP-style control** in one logical service, then **fan out video** through a **virtual camera** (Media Foundation) while exposing a **separate HTTP control API** for focus, exposure, and related commands.
 
-This repository is a **pnpm workspace**: shared **core** types, a headless **HTTP API** package, a **video adapter** package (MF virtual camera, planned), and an **Electron desktop** shell. Each workspace has its own `README` with a focused diagram; this file ties the story together.
+This repository is a **pnpm workspace**: shared **core** types, a headless **HTTP API** package, a **video adapter** package (MF virtual camera, planned), an **Electron desktop** shell, and a **SolidStart** marketing site. Each workspace has its own `README` with a focused diagram where it helps; this file ties the story together.
 
 ## Repository layout
 
@@ -12,6 +12,27 @@ This repository is a **pnpm workspace**: shared **core** types, a headless **HTT
 | [packages/api](./packages/api/README.md) | HTTP JSON control surface (`/health`, stub `/v1/command`, …). |
 | [packages/video](./packages/video/README.md) | MF virtual camera registration and frame pump (planned). |
 | [apps/desktop](./apps/desktop/README.md) | Electron UI and IPC stubs for local control. |
+| [apps/site](./apps/site/README.md) | SolidStart static site; published to **GitHub Pages** (see below). |
+
+## Marketing site (GitHub Pages)
+
+The [`apps/site`](./apps/site) app builds to **static HTML** (prerendered `/` and `/about`). In **Settings → Pages**, set **Build and deployment** source to **GitHub Actions**. Pushes to `main` that touch `apps/site/**`, the Pages workflow, or the root lockfile run [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) and publish to:
+
+`https://AMDphreak.github.io/nikon-uvc-ptp-bridge/`
+
+Production-style preview (matches the Pages base path):
+
+```powershell
+$env:VITE_BASE_PATH="/nikon-uvc-ptp-bridge/"
+pnpm run build:site
+pnpm dlx serve apps/site/.output/public
+```
+
+Local dev (Vite base `/`):
+
+```powershell
+pnpm run dev:site
+```
 
 ## Architecture — logical layers (inside the eventual service)
 
@@ -74,6 +95,7 @@ flowchart TB
     pkg_video["packages/video"]
     pkg_api["packages/api"]
     app_gui["apps/desktop"]
+    app_site["apps/site"]
   end
   pkg_video --> pkg_core
   pkg_api --> pkg_core
@@ -161,7 +183,8 @@ Electron writes each OS/arch combination under `apps/desktop/release/<staging-fo
 
 ## CI and releases
 
-- **CI** (`.github/workflows/ci.yml`): Ubuntu builds `packages/*`. A **desktop matrix** on **Windows**, **Ubuntu**, and **macOS** typechecks the workspace, runs `pnpm build`, then packages **x64 + arm64** artifacts per OS (Windows zip, Linux tar.gz + deb, macOS zip). The Windows leg also runs **`pnpm run pack:packages`** and uploads **`bridge-windows`** (zips + library `.tgz`). Linux and macOS legs upload **`bridge-linux`** and **`bridge-macos`**.
+- **CI** (`.github/workflows/ci.yml`): Ubuntu builds `packages/*` and the **static marketing site** (`pnpm run build:site` with the GitHub Pages base path). A **desktop matrix** on **Windows**, **Ubuntu**, and **macOS** typechecks the workspace, runs `pnpm build`, then packages **x64 + arm64** artifacts per OS (Windows zip, Linux tar.gz + deb, macOS zip). The Windows leg also runs **`pnpm run pack:packages`** and uploads **`bridge-windows`** (zips + library `.tgz`). Linux and macOS legs upload **`bridge-linux`** and **`bridge-macos`**.
+- **Pages** (`.github/workflows/pages.yml`): On pushes to `main`, builds `apps/site` and deploys the prerendered bundle to **GitHub Pages** (enable **Pages → GitHub Actions** in repo settings first).
 - **Release** (`.github/workflows/release.yml`): On `v*` tags, merges all `bridge-*` artifacts, runs **`scripts/render-winget.mjs`** and **`scripts/render-homebrew-cask.mjs`**, and publishes everything under **`release-assets/**`** (binaries, WinGet YAML, Homebrew cask Ruby) to the GitHub Release.
 
 ## Changelog
