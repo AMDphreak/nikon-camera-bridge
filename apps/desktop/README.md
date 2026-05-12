@@ -37,9 +37,11 @@ The GUI is **one control client** among many; the long-term split is a headless 
 pnpm --filter @nikon-camera-bridge/desktop dev
 pnpm --filter @nikon-camera-bridge/desktop run build
 pnpm --filter @nikon-camera-bridge/desktop run build:win
+pnpm --filter @nikon-camera-bridge/desktop run build:linux
+pnpm --filter @nikon-camera-bridge/desktop run build:mac
 ```
 
-From the **repository root**, `pnpm dev` and `pnpm run build:win` delegate here.
+From the **repository root**, `pnpm dev`, `pnpm run build:win`, `pnpm run build:linux`, and `pnpm run build:mac` delegate here.
 
 ## See also
 

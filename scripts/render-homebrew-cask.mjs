@@ -1,5 +1,5 @@
 /**
- * Writes a Homebrew Cask Ruby file next to macOS zips (for a tap or homebrew-cask PR).
+ * Writes a Homebrew Cask Ruby file next to macOS DMGs (for a tap or homebrew-cask PR).
  * Usage: VERSION=0.3.0 ASSETS_DIR=release-assets node scripts/render-homebrew-cask.mjs
  */
 import { createHash } from 'node:crypto'
@@ -25,8 +25,8 @@ async function sha256(path) {
   return createHash('sha256').update(buf).digest('hex')
 }
 
-const intelName = `Nikon.Camera.Bridge-${version}-mac-x64.zip`
-const armName = `Nikon.Camera.Bridge-${version}-mac-arm64.zip`
+const intelName = `Nikon.Camera.Bridge-${version}-mac-x64.dmg`
+const armName = `Nikon.Camera.Bridge-${version}-mac-arm64.dmg`
 
 let intelSha
 let armSha

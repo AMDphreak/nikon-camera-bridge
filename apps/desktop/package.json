@@ -12,9 +12,9 @@
   "scripts": {
     "dev": "electron-vite dev",
     "build": "electron-vite build",
-    "build:win": "electron-vite build && electron-builder --win zip --x64 --publish never --config.directories.output=release/win-x64 && electron-builder --win zip --arm64 --publish never --config.directories.output=release/win-arm64",
-    "build:linux": "electron-vite build && electron-builder --linux tar.gz --x64 --publish never --config.directories.output=release/linux-x64-tgz && electron-builder --linux tar.gz --arm64 --publish never --config.directories.output=release/linux-arm64-tgz && electron-builder --linux deb --x64 --publish never --config.directories.output=release/linux-x64-deb && electron-builder --linux deb --arm64 --publish never --config.directories.output=release/linux-arm64-deb",
-    "build:mac": "electron-vite build && electron-builder --mac zip --x64 --publish never --config.directories.output=release/mac-x64 && electron-builder --mac zip --arm64 --publish never --config.directories.output=release/mac-arm64",
+    "build:win": "electron-vite build && electron-builder --win msi --x64 --publish never --config.directories.output=release/win-x64-msi && electron-builder --win msi --arm64 --publish never --config.directories.output=release/win-arm64-msi && electron-builder --win zip --x64 --publish never --config.directories.output=release/win-x64-zip && electron-builder --win zip --arm64 --publish never --config.directories.output=release/win-arm64-zip",
+    "build:linux": "electron-vite build && electron-builder --linux deb --x64 --publish never --config.directories.output=release/linux-x64-deb && electron-builder --linux deb --arm64 --publish never --config.directories.output=release/linux-arm64-deb && electron-builder --linux AppImage --x64 --publish never --config.directories.output=release/linux-x64-appimage && electron-builder --linux AppImage --arm64 --publish never --config.directories.output=release/linux-arm64-appimage && electron-builder --linux flatpak --x64 --publish never --config.directories.output=release/linux-x64-flatpak && electron-builder --linux flatpak --arm64 --publish never --config.directories.output=release/linux-arm64-flatpak",
+    "build:mac": "electron-vite build && electron-builder --mac dmg --x64 --publish never --config.directories.output=release/mac-x64-dmg && electron-builder --mac dmg --arm64 --publish never --config.directories.output=release/mac-arm64-dmg",
     "preview": "electron-vite preview",
     "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit"
   },
@@ -43,16 +43,34 @@
     },
     "files": ["out/**/*"],
     "win": {
-      "target": ["zip"],
+      "target": ["msi", "zip"],
       "signAndEditExecutable": false
     },
     "linux": {
-      "target": ["tar.gz", "deb"],
+      "target": ["deb", "AppImage", "flatpak"],
       "category": "Utility",
-      "maintainer": "AMDphreak"
+      "maintainer": "AMDphreak",
+      "synopsis": "Nikon USB webcam bridge and control shell"
+    },
+    "flatpak": {
+      "runtime": "org.freedesktop.Platform",
+      "sdk": "org.freedesktop.Sdk",
+      "runtimeVersion": "25.08",
+      "base": "org.electronjs.Electron2.BaseApp",
+      "baseVersion": "25.08",
+      "finishArgs": [
+        "--socket=wayland",
+        "--socket=x11",
+        "--share=ipc",
+        "--device=dri",
+        "--socket=pulseaudio",
+        "--filesystem=home",
+        "--share=network",
+        "--talk-name=org.freedesktop.Notifications"
+      ]
     },
     "mac": {
-      "target": ["zip"],
+      "target": ["dmg"],
       "category": "public.app-category.utilities",
       "hardenedRuntime": false,
       "gatekeeperAssess": false

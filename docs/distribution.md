@@ -6,11 +6,11 @@ This repo ships **binaries from GitHub Releases** for **Windows (x64 + arm64)**,
 
 | Channel | Format | Architectures | Source |
 |---------|--------|-----------------|--------|
-| **WinGet** | Portable `.zip` | x64, arm64 | GitHub Release asset + generated manifests in `winget-manifests/` |
-| **Homebrew** | Cask `.zip` (macOS `.app` inside) | Intel + Apple Silicon | `release-assets/homebrew/nikon-camera-bridge.rb` (generated on release) |
+| **WinGet** | **`.msi`** (primary) + portable `.zip` | x64, arm64 | GitHub Release assets + generated manifests in `winget-manifests/` |
+| **Homebrew** | Cask **`.dmg`** | Intel + Apple Silicon | `release-assets/homebrew/nikon-camera-bridge.rb` (generated on release) |
 | **Debian / Ubuntu** | `.deb` | x64, arm64 | GitHub Release `.deb` assets |
-| **Generic Linux** | `.tar.gz` | x64, arm64 | GitHub Release tarball |
-| **Flathub / Flatpak** | Flatpak bundle | x86_64, aarch64 | See `distrib/flatpak/` (template + submission notes) |
+| **AppImage** | `.AppImage` | x64, arm64 | GitHub Release (no root install required) |
+| **Flatpak (bundle)** | `.flatpak` single-file | x64, arm64 | Built in **Release** / **CI** via electron-builder; Flathub submission still uses `distrib/flatpak/` |
 | **Arch (AUR)** | `PKGBUILD` | x86_64, aarch64 | Template `distrib/aur/PKGBUILD.in` |
 | **Snap** | `.snap` | amd64 / arm64 | Optional; add `snapcraft.yaml` if you want Snapcraft builds (not generated in CI yet). |
 
@@ -18,12 +18,12 @@ Fully automated publishing to **microsoft/winget-pkgs**, **Homebrew/homebrew-cas
 
 ## WinGet (Windows Package Manager)
 
-1. Tag a release (for example `v0.3.0`). The **Release** workflow uploads Windows zips and writes `release-assets/winget-manifests/*.yaml` next to them.
+1. Tag a release (for example `v0.3.0`). The **Release** workflow uploads Windows **`.msi`** and portable **`.zip`** files and writes `release-assets/winget-manifests/*.yaml` next to them.
 2. Download the three YAML files from the release (or copy them from a local run after `node scripts/render-winget.mjs`).
 3. Open a PR against **[microsoft/winget-pkgs](https://github.com/microsoft/winget-pkgs)** under  
    `manifests/a/AMDphreak/NikonCameraBridge/<version>/`  
    or use **`wingetcreate`** / **`Komac`** with the same metadata.
-4. If validation fails on **`NestedInstallerFiles`**, unzip one Windows artifact locally and set `RelativeFilePath` to the real `.exe` path inside the archive.
+4. If validation fails on **`NestedInstallerFiles`** for the portable zip entries, unzip one Windows artifact locally and set `RelativeFilePath` to the real `.exe` path inside the archive. **MSI** entries do not use nested installer metadata.
 
 Optional PAT workflow: add a repository secret (for example `WINGET_PKGS_TOKEN`) and a `workflow_dispatch` job that forks `winget-pkgs`, copies the manifests, and opens a PR—only worth doing once the package id is accepted.
 
@@ -39,9 +39,9 @@ Optional PAT workflow: add a repository secret (for example `WINGET_PKGS_TOKEN`)
 
 3. The cask is **not notarized**; users may need to use **Open** from the right‑click menu the first launch. Replace with a signed/notarized `.dmg` later if you obtain an Apple Developer Program membership.
 
-## Linux: Debian/Ubuntu (`.deb`) and tarballs
+## Linux: Debian/Ubuntu (`.deb`), AppImage, and Flatpak bundle
 
-Release assets include **`.deb`** and **`.tar.gz`** per architecture. Users can `dpkg -i` the deb or unpack the tarball.  
+Release assets include **`.deb`**, **`.AppImage`**, and **`.flatpak`** (single-file bundle from electron-builder) per architecture. Users can `dpkg -i` the deb, `chmod +x` and run the AppImage, or install the **`.flatpak`** with a recent Flatpak CLI (see [Flatpak single-file bundles](https://docs.flatpak.org/en/latest/single-file-bundles.html)).  
 For **official** inclusion in Debian/Ubuntu archives you would need an **ITP / RFS** process or a **PPA** on Launchpad—outside the scope of this repo’s automation, but the `.deb` is the usual starting point.
 
 ## Flatpak (Flathub and other remotes)

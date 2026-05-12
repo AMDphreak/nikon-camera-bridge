@@ -4,7 +4,7 @@ Flathub expects an AppStream metainfo file, desktop entry, and a manifest that e
 
 ## Layout (proposed)
 
-- `com.amdphreak.NikonCameraBridge.yml` — main manifest (module downloads release `.tar.gz` for `x86_64` / `aarch64`).
+- `com.amdphreak.NikonCameraBridge.yml` — main manifest (module can download release **`.deb`**, **`.AppImage`**, or **`.flatpak`** for `x86_64` / `aarch64`).
 - `com.amdphreak.NikonCameraBridge.metainfo.xml` — AppStream metadata (screenshots, releases, OARS).
 - `com.amdphreak.NikonCameraBridge.desktop` — `.desktop` launcher.
 
@@ -15,4 +15,4 @@ Flathub expects an AppStream metainfo file, desktop entry, and a manifest that e
 3. Open a PR to **[flathub/flathub](https://github.com/flathub/flathub)** with the manifest in a new repository as per Flathub workflow.
 4. Flathub CI builds on **x86_64** and **aarch64**; fix `extra-data` URLs and sha256 for each release.
 
-Until a maintainer completes the Flathub PR, users on Linux should prefer the **`.deb`** or **`.tar.gz`** attached to GitHub Releases.
+Until a maintainer completes the Flathub PR, users on Linux should prefer the **`.deb`**, **`.AppImage`**, or **`.flatpak`** attached to GitHub Releases (see `docs/distribution.md`).

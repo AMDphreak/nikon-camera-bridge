@@ -101,17 +101,24 @@ jobs:
       - name: Build workspace
         run: pnpm build
 
-      - name: Package Windows (x64 + arm64 zip)
+      - name: Package Windows (MSI + zip, x64 + arm64)
         if: matrix.kind == 'windows'
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
         run: pnpm run build:win
 
-      - name: Package Linux (x64 + arm64 tar.gz + deb)
+      - name: Install Flatpak build dependencies
+        if: matrix.kind == 'linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder elfutils squashfs-tools
+          sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+      - name: Package Linux (deb + AppImage + flatpak, x64 + arm64)
         if: matrix.kind == 'linux'
         run: pnpm run build:linux
 
-      - name: Package macOS (x64 + arm64 zip)
+      - name: Package macOS (DMG, x64 + arm64)
         if: matrix.kind == 'mac'
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
@@ -127,6 +134,7 @@ jobs:
         with:
           name: bridge-windows
           path: |
+            apps/desktop/release/**/*.msi
             apps/desktop/release/**/*.zip
             dist-pack/*.tgz
 
@@ -136,12 +144,13 @@ jobs:
         with:
           name: bridge-linux
           path: |
-            apps/desktop/release/**/*.tar.gz
             apps/desktop/release/**/*.deb
+            apps/desktop/release/**/*.AppImage
+            apps/desktop/release/**/*.flatpak
 
       - name: Upload bridge-macos
         if: matrix.kind == 'mac'
         uses: actions/upload-artifact@v4
         with:
           name: bridge-macos
-          path: apps/desktop/release/**/*.zip
+          path: apps/desktop/release/**/*.dmg

@@ -25,31 +25,69 @@ async function sha256File(abs) {
   return createHash('sha256').update(buf).digest('hex').toUpperCase()
 }
 
-const files = await readdir(root)
-const winZips = files.filter((f) => f.endsWith('.zip') && f.includes('-win-') && f.startsWith('Nikon.Camera.Bridge'))
+function archFromWinName(name) {
+  if (name.includes('-arm64-')) return 'arm64'
+  if (name.includes('-x64-')) return 'x64'
+  return null
+}
 
-const installers = []
-for (const name of winZips.sort()) {
+const files = await readdir(root)
+const prefix = 'Nikon.Camera.Bridge'
+
+const msiRows = []
+for (const name of files.filter((f) => f.endsWith('.msi') && f.startsWith(prefix) && f.includes('-win-'))) {
   const abs = join(root, name)
   const hash = await sha256File(abs)
-  const arch = name.includes('-arm64-') ? 'arm64' : name.includes('-x64-') ? 'x64' : null
+  const arch = archFromWinName(name)
   if (!arch) continue
-  installers.push({
+  msiRows.push({
+    Architecture: arch,
+    InstallerUrl: `${base}/${name}`,
+    InstallerSha256: hash
+  })
+}
+
+const zipRows = []
+for (const name of files.filter((f) => f.endsWith('.zip') && f.startsWith(prefix) && f.includes('-win-'))) {
+  const abs = join(root, name)
+  const hash = await sha256File(abs)
+  const arch = archFromWinName(name)
+  if (!arch) continue
+  zipRows.push({
     Architecture: arch,
     InstallerUrl: `${base}/${name}`,
     InstallerSha256: hash,
-    InstallerType: 'zip',
     NestedInstallerType: 'portable',
     NestedInstallerFiles: [{ RelativeFilePath: 'Nikon Camera Bridge.exe' }]
   })
 }
 
+const installers = [...msiRows, ...zipRows].sort((a, b) =>
+  `${a.Architecture}-${a.InstallerUrl}`.localeCompare(`${b.Architecture}-${b.InstallerUrl}`)
+)
+
+function installerYamlBlock(i) {
+  if ('NestedInstallerType' in i) {
+    return `  - Architecture: ${i.Architecture}
+    InstallerType: zip
+    InstallerUrl: ${i.InstallerUrl}
+    InstallerSha256: ${i.InstallerSha256}
+    NestedInstallerType: ${i.NestedInstallerType}
+    NestedInstallerFiles:
+      - RelativeFilePath: ${i.NestedInstallerFiles[0].RelativeFilePath}`
+  }
+  return `  - Architecture: ${i.Architecture}
+    InstallerType: msi
+    InstallerUrl: ${i.InstallerUrl}
+    InstallerSha256: ${i.InstallerSha256}`
+}
+
 if (installers.length === 0) {
-  console.warn('No Windows zip installers found; writing WinGet README stub only.')
+  console.warn('No Windows .msi or portable .zip installers found; writing WinGet README stub only.')
   await mkdir(outDir, { recursive: true })
   await writeFile(
     join(outDir, 'README.txt'),
-    'No Windows .zip artifacts were present when this manifest was generated.\n'
+    'No Windows .msi or .zip artifacts were present when this manifest was generated.\n'
   )
 } else {
   await mkdir(outDir, { recursive: true })
@@ -68,17 +106,7 @@ InstallModes:
   - silent
 UpgradeBehavior: install
 Installers:
-${installers
-  .map(
-    (i) => `  - Architecture: ${i.Architecture}
-    InstallerType: ${i.InstallerType}
-    InstallerUrl: ${i.InstallerUrl}
-    InstallerSha256: ${i.InstallerSha256}
-    NestedInstallerType: ${i.NestedInstallerType}
-    NestedInstallerFiles:
-      - RelativeFilePath: ${i.NestedInstallerFiles[0].RelativeFilePath}`
-  )
-  .join('\n')}
+${installers.map((i) => installerYamlBlock(i)).join('\n')}
 ManifestType: installer
 ManifestVersion: 1.6.0
 `
@@ -119,4 +147,3 @@ ManifestVersion: 1.6.0
 
   console.log('WinGet manifests written to', outDir)
 }
-

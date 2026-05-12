@@ -1,12 +1,18 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- **Desktop release artifacts**: Windows **`.msi`** installers plus portable **`.zip`** (x64 + arm64); macOS **`.dmg`**; Linux **`.deb`**, **`.AppImage`**, and electron-builder **`.flatpak`** single-file bundles. CI installs **Flatpak** tooling on Ubuntu runners. WinGet generated manifests list **MSI** and portable **zip**; Homebrew cask uses **DMG** URLs; AUR template unpacks the **`.deb`**.
+
 ## [0.3.0] - 2026-05-12
 
 ### Added
 
 - **`apps/site`**: SolidStart (**1.x** + Vinxi) marketing site with prerendered **`/`** and **`/about`**, GitHub Pages base path via `VITE_BASE_PATH`, and [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) for deployment from `main` (enable **Pages → GitHub Actions** in repo settings).
 - Root scripts **`pnpm run build:site`** and **`pnpm run dev:site`**.
-- Desktop builds for **Linux** (`.tar.gz` + `.deb`, x64 + arm64) and **macOS** (`.zip`, x64 + arm64) alongside **Windows** (`.zip`, x64 + arm64); `artifactName` includes OS and arch.
+- Desktop builds for **Linux** (`.deb`, `.AppImage`, `.flatpak`, x64 + arm64) and **macOS** (`.dmg`, x64 + arm64) alongside **Windows** (`.msi` + portable `.zip`, x64 + arm64); `artifactName` includes OS and arch.
 - `docs/distribution.md` with WinGet, Homebrew, Debian/Flatpak, and AUR maintainer flows.
 - `scripts/render-winget.mjs` and `scripts/render-homebrew-cask.mjs`; release workflow attaches generated manifests next to binaries.
 - `distrib/flatpak/README.md` and `distrib/aur/PKGBUILD.in` templates for Linux packaging ecosystems.
