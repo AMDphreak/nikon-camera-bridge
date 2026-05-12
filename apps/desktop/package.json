@@ -2,6 +2,11 @@
   "name": "@nikon-uvc-ptp-bridge/desktop",
   "version": "0.3.0",
   "description": "Electron desktop shell for the Nikon UVC-PTP bridge",
+  "homepage": "https://github.com/AMDphreak/nikon-uvc-ptp-bridge",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AMDphreak/nikon-uvc-ptp-bridge.git"
+  },
   "type": "module",
   "main": "out/main/index.js",
   "scripts": {

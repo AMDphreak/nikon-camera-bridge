@@ -13,6 +13,10 @@
 
 - Desktop Windows/Linux/macOS packaging uses **separate `directories.output` staging folders** per architecture so parallel **x64** and **arm64** artifacts do not fight over the same unpacked directory (important on Windows).
 
+### Fixed
+
+- Linux **`.deb`** builds: electron-builder’s FPM path requires **`homepage`** (and benefits from **`repository`**) in `apps/desktop/package.json`; without it, `deb` failed after `tar.gz` succeeded.
+
 [0.3.0]: https://github.com/AMDphreak/nikon-uvc-ptp-bridge/releases/tag/v0.3.0
 
 ## [0.2.0] - 2026-05-12
