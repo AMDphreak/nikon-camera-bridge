@@ -1,8 +1,55 @@
-# Webcam Bridge for Nikon (monorepo)
+<a id="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![License][license-shield]][license-url]
+
+<div align="center">
+  <h1>Webcam Bridge for Nikon</h1>
+  <p>Webcam Bridge for Nikon: use your Nikon USB webcam in Zoom, Teams, or OBS as a virtual camera, with HTTP control for focus and exposure. Windows first, open source.</p>
+  <p>
+    <a href="https://AMDphreak.github.io/nikon-camera-bridge/">Explore the docs</a>
+    ·
+    <a href="https://github.com/AMDphreak/nikon-camera-bridge/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/AMDphreak/nikon-camera-bridge/issues">Request Feature</a>
+  </p>
+</div>
+
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#built-with">Built With</a></li>
+    <li><a href="#repository-layout">Repository layout</a></li>
+    <li><a href="#marketing-site-github-pages">Marketing site</a></li>
+    <li><a href="#architecture--logical-layers-inside-the-eventual-service">Architecture</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+## About The Project
 
 Windows-first **bridge** that will consolidate **Nikon USB webcam (UVC)** access with **PTP-style control** in one logical service, then **fan out video** through a **virtual camera** (Media Foundation) while exposing a **separate HTTP control API** for focus, exposure, and related commands.
 
 This repository is a **pnpm workspace**: shared **core** types, a headless **HTTP API** package, a **video adapter** package (MF virtual camera, planned), an **Electron desktop** shell, and a **SolidStart** marketing site. Each workspace has its own `README` with a focused diagram where it helps; this file ties the story together.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Built With
+
+* TypeScript
+* Electron
+* SolidStart
+* pnpm (monorepo)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Repository layout
 
@@ -124,7 +171,9 @@ flowchart TB
   Zoom2 --> MF
 ```
 
-## Development
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Getting Started
 
 Requirements: **Node 20+**, **pnpm 9+**.
 
@@ -133,7 +182,11 @@ pnpm install
 pnpm dev
 ```
 
-`prepare` runs `pnpm run build:packages` after `pnpm install` so every library has a `dist/` output before the desktop typecheck or build. The desktop package sets `build.electronVersion` so **electron-builder** can resolve Electron under pnpm’s hoisted layout.
+`prepare` runs `pnpm run build:packages` after `pnpm install` so every library has a `dist/` output before the desktop typecheck or build. The desktop package sets `build.electronVersion` so **electron-builder** can resolve Electron under pnpm's hoisted layout.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Usage
 
 **HTTP API** (stub server):
 
@@ -181,20 +234,50 @@ On **GitHub Actions**, library `.tgz` files are produced on the **Windows** desk
 
 Electron writes each OS/arch combination under `apps/desktop/release/<staging-folder>/` so **x64** and **arm64** builds never share the same `win-unpacked` tree (avoids file locks on Windows).
 
-## CI and releases
+### CI and releases
 
 - **CI** (`.github/workflows/ci.yml`): Ubuntu builds `packages/*` and the **static marketing site** (`pnpm run build:site` with the GitHub Pages base path). A **desktop matrix** on **Windows**, **Ubuntu**, and **macOS** typechecks the workspace, runs `pnpm build`, then packages **x64 + arm64** artifacts per OS (Windows **MSI + MSIX + zip**, Linux **deb + AppImage + flatpak**, macOS **DMG**). The Windows leg also runs **`pnpm run pack:packages`** and uploads **`bridge-windows`** (MSI, MSIX, zips, library `.tgz`). Linux and macOS legs upload **`bridge-linux`** and **`bridge-macos`**.
 - **Pages** (`.github/workflows/pages.yml`): On pushes to `main`, builds `apps/site` and deploys the prerendered bundle to **GitHub Pages** (enable **Pages → GitHub Actions** in repo settings first).
 - **Release** (`.github/workflows/release.yml`): On `v*` tags, merges all `bridge-*` artifacts, runs **`scripts/render-winget.mjs`** and **`scripts/render-homebrew-cask.mjs`**, and publishes everything under **`release-assets/**`** (binaries, WinGet YAML, Homebrew cask Ruby) to the GitHub Release.
 
-## Changelog
+### Changelog
 
 See [CHANGELOG.md](./CHANGELOG.md).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contributing
+
+Pull requests and issues are welcome. By contributing, you agree your contributions are under the same license (see [`CONTRIBUTING.md`](./CONTRIBUTING.md)).
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## License
 
 This project is licensed under the [**GNU Affero General Public License v3.0 or later**](https://www.gnu.org/licenses/agpl-3.0.html) (SPDX: **`AGPL-3.0-or-later`**). See [`LICENSE`](./LICENSE) for the full text.
 
-**Why AGPL?** It is a **strong copyleft** license: if someone modifies this code and **distributes** it or **runs it as a networked service** for others, they generally must **offer their source under the same license**. That discourages proprietary “copycat” forks and scam repackagers who won’t publish source, while still allowing **anyone to study, improve, and redistribute** the project and to **charge for binaries** as long as they comply with the license.
+**Why AGPL?** It is a **strong copyleft** license: if someone modifies this code and **distributes** it or **runs it as a networked service** for others, they generally must **offer their source under the same license**. That discourages proprietary "copycat" forks and scam repackagers who won't publish source, while still allowing **anyone to study, improve, and redistribute** the project and to **charge for binaries** as long as they comply with the license.
 
-**Contributions:** Pull requests and issues are welcome. By contributing, you agree your contributions are under the same license (see [`CONTRIBUTING.md`](./CONTRIBUTING.md)).
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contact
+
+Ryan Johnson — [@amdphreak](https://twitter.com/amdphreak)
+
+Project Link: [https://github.com/AMDphreak/nikon-camera-bridge](https://github.com/AMDphreak/nikon-camera-bridge)
+
+Site: [https://AMDphreak.github.io/nikon-camera-bridge/](https://AMDphreak.github.io/nikon-camera-bridge/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
+[contributors-url]: https://github.com/AMDphreak/nikon-camera-bridge/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
+[forks-url]: https://github.com/AMDphreak/nikon-camera-bridge/network/members
+[stars-shield]: https://img.shields.io/github/stars/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
+[stars-url]: https://github.com/AMDphreak/nikon-camera-bridge/stargazers
+[issues-shield]: https://img.shields.io/github/issues/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
+[issues-url]: https://github.com/AMDphreak/nikon-camera-bridge/issues
+[license-shield]: https://img.shields.io/github/license/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
+[license-url]: https://github.com/AMDphreak/nikon-camera-bridge/blob/main/LICENSE
