@@ -1,19 +1,19 @@
 <a id="readme-top"></a>
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![License][license-shield]][license-url]
-
 <div align="center">
+  <a href="https://github.com/AMDphreak/nikon-camera-bridge/graphs/contributors"><img src="https://img.shields.io/github/contributors/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge" alt="Contributors"></a>
+  <a href="https://github.com/AMDphreak/nikon-camera-bridge/network/members"><img src="https://img.shields.io/github/forks/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge" alt="Forks"></a>
+  <a href="https://github.com/AMDphreak/nikon-camera-bridge/stargazers"><img src="https://img.shields.io/github/stars/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge" alt="Stargazers"></a>
+  <a href="https://github.com/AMDphreak/nikon-camera-bridge/issues"><img src="https://img.shields.io/github/issues/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge" alt="Issues"></a>
+  <a href="https://github.com/AMDphreak/nikon-camera-bridge/blob/main/LICENSE"><img src="https://img.shields.io/github/license/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge" alt="License"></a>
+
   <h1>Webcam Bridge for Nikon</h1>
   <p>Webcam Bridge for Nikon: use your Nikon USB webcam in Zoom, Teams, or OBS as a virtual camera, with HTTP control for focus and exposure. Windows first, open source.</p>
   <p>
-    <a href="https://AMDphreak.github.io/nikon-camera-bridge/">Explore the docs</a>
-    ·
+    <a href="https://AMDphreak.github.io/nikon-camera-bridge/"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
     <a href="https://github.com/AMDphreak/nikon-camera-bridge/issues">Report Bug</a>
-    ·
+    &middot;
     <a href="https://github.com/AMDphreak/nikon-camera-bridge/issues">Request Feature</a>
   </p>
 </div>
@@ -44,10 +44,11 @@ This repository is a **pnpm workspace**: shared **core** types, a headless **HTT
 
 ## Built With
 
-* TypeScript
-* Electron
-* SolidStart
-* pnpm (monorepo)
+* **Desktop** — [![Electron][Electron.com]][Electron-url]
+  * [![TypeScript][TypeScript.com]][TypeScript-url]
+* **Marketing site** — [![SolidStart][SolidStart.dev]][SolidStart-url]
+* **Monorepo** — [![pnpm][pnpm.io]][pnpm-url]
+* **Video (planned)** — Media Foundation virtual camera adapter
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -250,6 +251,14 @@ See [CHANGELOG.md](./CHANGELOG.md).
 
 Pull requests and issues are welcome. By contributing, you agree your contributions are under the same license (see [`CONTRIBUTING.md`](./CONTRIBUTING.md)).
 
+### Top contributors
+
+<a href="https://github.com/AMDphreak/nikon-camera-bridge/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AMDphreak/nikon-camera-bridge" alt="contributors" />
+</a>
+
+For per-person profile links, prefer [all-contributors](https://allcontributors.org/).
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## License
@@ -271,13 +280,11 @@ Site: [https://AMDphreak.github.io/nikon-camera-bridge/](https://AMDphreak.githu
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-[contributors-shield]: https://img.shields.io/github/contributors/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
-[contributors-url]: https://github.com/AMDphreak/nikon-camera-bridge/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
-[forks-url]: https://github.com/AMDphreak/nikon-camera-bridge/network/members
-[stars-shield]: https://img.shields.io/github/stars/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
-[stars-url]: https://github.com/AMDphreak/nikon-camera-bridge/stargazers
-[issues-shield]: https://img.shields.io/github/issues/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
-[issues-url]: https://github.com/AMDphreak/nikon-camera-bridge/issues
-[license-shield]: https://img.shields.io/github/license/AMDphreak/nikon-camera-bridge.svg?style=for-the-badge
-[license-url]: https://github.com/AMDphreak/nikon-camera-bridge/blob/main/LICENSE
+[Electron.com]: https://img.shields.io/badge/Electron-191970?style=for-the-badge&logo=Electron&logoColor=white
+[Electron-url]: https://www.electronjs.org/
+[TypeScript.com]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
+[TypeScript-url]: https://www.typescriptlang.org/
+[SolidStart.dev]: https://img.shields.io/badge/SolidStart-2C4F7C?style=for-the-badge&logo=solid&logoColor=white
+[SolidStart-url]: https://start.solidjs.com/
+[pnpm.io]: https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white
+[pnpm-url]: https://pnpm.io/
