@@ -1,0 +1,33 @@
+= Nikon Camera Bridge
+:description: Windows-first bridge for Nikon USB video, a virtual camera, and camera controls.
+:page-audience: Users and contributors evaluating Nikon camera integration on desktop systems
+:page-usage-context: Product architecture and project-status overview
+:page-orig-author: Ryan Johnson
+:page-last-author: Cursor agent on behalf of Ryan Johnson
+:page-last-edited: 2026-09-07
+
+ifndef::page-context-active[]
+[.page-context.page-context-lead]
+****
+Audience:: {page-audience}
+****
+endif::[]
+
+Nikon Camera Bridge is a Windows-first project for combining Nikon USB webcam video with camera controls in one service. The intended output is a Media Foundation virtual camera for apps such as Zoom, Teams, and OBS, plus a separate HTTP API for focus, exposure, and related commands.
+
+== Current structure
+
+The pnpm workspace contains shared core types, an HTTP API package, a planned Media Foundation video adapter, an Electron desktop shell, and a SolidStart marketing site. The control and desktop surfaces are scaffolded; the virtual-camera frame pipeline remains planned work.
+
+== Development
+
+Use Node.js 20 or newer and pnpm. `pnpm install` builds the shared packages, `pnpm dev` starts the desktop shell, and `pnpm run dev:api` starts the stub HTTP control server. Platform packaging scripts cover Windows, Linux, and macOS artifacts.
+
+ifndef::page-context-active[]
+[.page-context.page-context-footer]
+****
+Original author:: {page-orig-author}
+Latest contributor:: {page-last-author}
+Last updated:: {page-last-edited}
+****
+endif::[]

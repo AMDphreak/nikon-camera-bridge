@@ -9,7 +9,7 @@
   <h1>Webcam Bridge for Nikon</h1>
   <p>Webcam Bridge for Nikon: use your Nikon USB webcam in Zoom, Teams, or OBS as a virtual camera, with HTTP control for focus and exposure. Windows first, open source.</p>
   <p>
-    <a href="https://AMDphreak.github.io/nikon-camera-bridge/"><strong>Explore the docs »</strong></a>
+    <a href="https://desktop-tooling.github.io/docs/nikon-camera-bridge/"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/AMDphreak/nikon-camera-bridge/issues">Report Bug</a>
