@@ -32,6 +32,9 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Check generated diagrams
+        run: pnpm run diagrams:check
+
       - name: Typecheck packages
         run: pnpm run typecheck:packages
 
