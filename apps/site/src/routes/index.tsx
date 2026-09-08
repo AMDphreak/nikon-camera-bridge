@@ -1,11 +1,6 @@
 import { Title } from "@solidjs/meta";
-import { upgradeThemedSvgImage } from "@dev-centr/themed-svg/runtime";
-import { onMount } from "solid-js";
 
 export default function Home() {
-  let architectureDiagram!: HTMLImageElement;
-  onMount(() => upgradeThemedSvgImage(architectureDiagram));
-
   return (
     <main class="hero">
       <Title>Webcam Bridge for Nikon</Title>
@@ -37,7 +32,7 @@ export default function Home() {
       </div>
       <figure class="architecture">
         <img
-          ref={architectureDiagram}
+          data-themed-svg
           src="./diagrams/logical-architecture.svg"
           alt="Nikon camera bridge logical architecture"
           width="588"

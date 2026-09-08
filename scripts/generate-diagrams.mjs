@@ -14,6 +14,7 @@ const diagramDirectory = join(root, "docs", "diagrams")
 const siteDiagramDirectory = join(root, "apps", "site", "public", "diagrams")
 const antoraImageDirectory = join(root, "docs", "modules", "ROOT", "images")
 const configPath = join(root, "scripts", "mermaid-config.json")
+const puppeteerConfigPath = join(root, "scripts", "puppeteer-github-actions.json")
 const mermaidModulePath = fileURLToPath(import.meta.resolve("@mermaid-js/mermaid-cli"))
 const mermaidCli = join(dirname(mermaidModulePath), "cli.js")
 const sources = readdirSync(diagramDirectory).filter((name) => name.endsWith(".mmd")).sort()
@@ -114,6 +115,9 @@ try {
         temporaryRawPath,
         "--configFile",
         configPath,
+        ...(process.platform === "linux" && process.env.GITHUB_ACTIONS === "true"
+          ? ["--puppeteerConfigFile", puppeteerConfigPath]
+          : []),
         "--backgroundColor",
         "transparent",
         "--svgId",

@@ -8,7 +8,7 @@
   },
   "themeVariables": {
     "background": "#ffffff",
-    "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif",
+    "fontFamily": "Arial, sans-serif",
     "fontSize": "16px",
     "lineColor": "#475569",
     "primaryColor": "#e0f2fe",
