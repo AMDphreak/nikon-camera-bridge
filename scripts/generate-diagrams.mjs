@@ -1,4 +1,5 @@
 import { spawnSync } from "node:child_process"
+import { createHash } from "node:crypto"
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs"
 import { tmpdir } from "node:os"
 import { basename, dirname, join, resolve } from "node:path"
@@ -42,6 +43,17 @@ function updateOrCheck(path, content) {
   }
   writeFileSync(path, content, "utf8")
 }
+
+const sourceHashes = Object.fromEntries(
+  sources.map((source) => [
+    source,
+    createHash("sha256").update(readFileSync(join(diagramDirectory, source))).digest("hex"),
+  ]),
+)
+updateOrCheck(
+  join(root, "scripts", "diagram-source-hashes.json"),
+  `${JSON.stringify(sourceHashes, null, 2)}\n`,
+)
 
 function manifestFor(name) {
   const rootSelector = `#${name}`
@@ -129,10 +141,14 @@ try {
       throw render.error ?? new Error(render.stderr || render.stdout || `Mermaid failed for ${name}`)
     }
 
-    const rawSvg = readFileSync(temporaryRawPath, "utf8")
+    const renderedRawSvg = readFileSync(temporaryRawPath, "utf8")
       .replace('role="graphics-document document"', 'role="img"')
       .replace(/\saria-roledescription="[^"]*"/, "")
-    if (/<foreignObject\b/i.test(rawSvg)) throw new Error(`${name}: htmlLabels must remain disabled`)
+    if (/<foreignObject\b/i.test(renderedRawSvg)) throw new Error(`${name}: htmlLabels must remain disabled`)
+    const rawSvg =
+      check && process.platform !== "win32"
+        ? readFileSync(`${stem}.raw.svg`, "utf8")
+        : renderedRawSvg
 
     const manifest = manifestFor(name)
     const dual = prepareThemedMermaidSvgDualOutput(rawSvg, manifest)

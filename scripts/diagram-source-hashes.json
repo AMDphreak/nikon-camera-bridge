@@ -1,0 +1,10 @@
+{
+  "api-package-relationships.mmd": "1b59973f9853004d012c6448e12f40dd944d2e5e0bb88463de915195a8633f8e",
+  "core-package-relationships.mmd": "19a619dd55f8160e6dd743ac8f4c51357bffd1c49d9cb7868ef70b505aa39a92",
+  "desktop-package-relationships.mmd": "3f281b1b9bf712a40ca56f82b41c98dd9e1e87504db52e411f7bc89bd4872f8c",
+  "logical-architecture.mmd": "2173e1605dd60c634cf6740476c40c2ee5b3364cb1e494bf5e696b67fa6c42a8",
+  "media-foundation-placement.mmd": "bc78c84d2c3022244b23c97f8d9b6d992609dfe08023ec7962b46e148e9742b3",
+  "monorepo-packages.mmd": "781698a78b9d497ef549f3f371234831f8827129f72cc5cae3d52dfca626b43d",
+  "product-consumers.mmd": "05fa63d1148c6ca652afacb1c89a5558358411a098edab7bc7a12140a718e0f4",
+  "video-package-relationships.mmd": "28197a595e5767b2184b7c60cc52452790926a8759cf9b0b78e6fecbf9899f84"
+}
