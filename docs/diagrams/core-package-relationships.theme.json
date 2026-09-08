@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "namespace": "nikon-core-package-relationships",
+  "source": {
+    "kind": "mermaid",
+    "uri": "core-package-relationships.mmd",
+    "generator": "@mermaid-js/mermaid-cli@11.17.0"
+  },
+  "tokens": [
+    {
+      "id": "color.canvas"
+    },
+    {
+      "id": "color.surface.primary"
+    },
+    {
+      "id": "color.surface.secondary"
+    },
+    {
+      "id": "color.text.primary"
+    },
+    {
+      "id": "color.border.primary"
+    },
+    {
+      "id": "color.edge"
+    }
+  ],
+  "defaultPreset": "light",
+  "presets": {
+    "light": {
+      "color.canvas": "#ffffff",
+      "color.surface.primary": "#e0f2fe",
+      "color.surface.secondary": "#f8fafc",
+      "color.text.primary": "#0f172a",
+      "color.border.primary": "#0369a1",
+      "color.edge": "#475569"
+    }
+  },
+  "paletteOverrides": {
+    "dark": {
+      "color.canvas": "#0f172a",
+      "color.surface.primary": "#0c4a6e",
+      "color.surface.secondary": "#1e293b",
+      "color.text.primary": "#f8fafc",
+      "color.border.primary": "#38bdf8",
+      "color.edge": "#cbd5e1"
+    }
+  },
+  "bindings": [
+    {
+      "kind": "inline-style",
+      "selector": "svg",
+      "property": "background-color",
+      "token": "color.canvas"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .label text",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node rect",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node circle",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node ellipse",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node polygon",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node path",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .node path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .cluster rect",
+      "property": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .cluster rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .cluster-label text",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .marker",
+      "property": "fill",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .marker",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .edgePaths .path",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#core-package-relationships .flowchart-link",
+      "property": "stroke",
+      "token": "color.edge"
+    }
+  ],
+  "fallback": {
+    "unresolvedToken": "error",
+    "missingTarget": "error"
+  }
+}

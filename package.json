@@ -6,10 +6,6 @@
   "author": "AMDphreak",
   "license": "AGPL-3.0-or-later",
   "type": "module",
-  "pnpm": {
-    "onlyBuiltDependencies": ["electron", "esbuild", "@parcel/watcher"],
-    "confirmModulesPurge": false
-  },
   "scripts": {
     "prepare": "pnpm run build:packages",
     "build:packages": "pnpm --filter @nikon-camera-bridge/core run build && pnpm --filter @nikon-camera-bridge/api run build && pnpm --filter @nikon-camera-bridge/video run build",
@@ -26,7 +22,14 @@
     "render:brew": "node scripts/render-homebrew-cask.mjs",
     "pack:packages": "node scripts/pack-workspace.mjs",
     "build:site": "pnpm --filter @nikon-camera-bridge/site run build",
-    "dev:site": "pnpm --filter @nikon-camera-bridge/site run dev"
+    "dev:site": "pnpm --filter @nikon-camera-bridge/site run dev",
+    "diagrams:generate": "node scripts/generate-diagrams.mjs",
+    "diagrams:check": "node scripts/generate-diagrams.mjs --check"
+  },
+  "devDependencies": {
+    "@dev-centr/mermaid-svg-css-vars": "0.1.2",
+    "@dev-centr/themed-svg": "0.1.1",
+    "@mermaid-js/mermaid-cli": "11.17.0"
   },
   "engines": {
     "node": ">=20"

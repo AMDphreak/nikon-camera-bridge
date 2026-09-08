@@ -1,0 +1,14 @@
+flowchart LR
+  accTitle: Core package relationships
+  accDescr: The API, video, and desktop packages all depend on the shared core types and state helpers.
+
+  subgraph core["@nikon-camera-bridge/core"]
+    T[Types and state helpers]
+  end
+  API["@nikon-camera-bridge/api"]
+  VID["@nikon-camera-bridge/video"]
+  GUI["@nikon-camera-bridge/desktop"]
+
+  API --> T
+  VID --> T
+  GUI --> T

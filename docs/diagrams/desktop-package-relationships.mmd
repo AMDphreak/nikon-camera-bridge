@@ -1,0 +1,25 @@
+flowchart LR
+  accTitle: Desktop package relationships
+  accDescr: The operator controls the Electron renderer and IPC layer, which uses the core package; webcam applications use the planned video adapter.
+
+  subgraph consumers["Consumers"]
+    User[Operator]
+    Zoom[Zoom / Teams]
+  end
+
+  subgraph desktop["apps/desktop"]
+    UI[Electron renderer]
+    IPC[IPC to main process]
+  end
+
+  subgraph other["Other packages"]
+    Core["@nikon-camera-bridge/core"]
+    API["@nikon-camera-bridge/api"]
+    VID["@nikon-camera-bridge/video"]
+  end
+
+  User --> UI
+  UI --> IPC
+  IPC --> Core
+  Zoom -. future virtual cam .-> VID
+  API -. localhost .-> User

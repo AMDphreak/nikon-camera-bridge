@@ -1,0 +1,176 @@
+{
+  "schemaVersion": 1,
+  "namespace": "nikon-product-consumers",
+  "source": {
+    "kind": "mermaid",
+    "uri": "product-consumers.mmd",
+    "generator": "@mermaid-js/mermaid-cli@11.17.0"
+  },
+  "tokens": [
+    {
+      "id": "color.canvas"
+    },
+    {
+      "id": "color.surface.primary"
+    },
+    {
+      "id": "color.surface.secondary"
+    },
+    {
+      "id": "color.text.primary"
+    },
+    {
+      "id": "color.border.primary"
+    },
+    {
+      "id": "color.edge"
+    }
+  ],
+  "defaultPreset": "light",
+  "presets": {
+    "light": {
+      "color.canvas": "#ffffff",
+      "color.surface.primary": "#e0f2fe",
+      "color.surface.secondary": "#f8fafc",
+      "color.text.primary": "#0f172a",
+      "color.border.primary": "#0369a1",
+      "color.edge": "#475569"
+    }
+  },
+  "paletteOverrides": {
+    "dark": {
+      "color.canvas": "#0f172a",
+      "color.surface.primary": "#0c4a6e",
+      "color.surface.secondary": "#1e293b",
+      "color.text.primary": "#f8fafc",
+      "color.border.primary": "#38bdf8",
+      "color.edge": "#cbd5e1"
+    }
+  },
+  "bindings": [
+    {
+      "kind": "inline-style",
+      "selector": "svg",
+      "property": "background-color",
+      "token": "color.canvas"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .label text",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node rect",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node circle",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node circle",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node ellipse",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node ellipse",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node polygon",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node polygon",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node path",
+      "property": "fill",
+      "token": "color.surface.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .node path",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .cluster rect",
+      "property": "fill",
+      "token": "color.surface.secondary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .cluster rect",
+      "property": "stroke",
+      "token": "color.border.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .cluster-label text",
+      "property": "fill",
+      "token": "color.text.primary"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .marker",
+      "property": "fill",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .marker",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .edgePaths .path",
+      "property": "stroke",
+      "token": "color.edge"
+    },
+    {
+      "kind": "stylesheet",
+      "selector": "#product-consumers .flowchart-link",
+      "property": "stroke",
+      "token": "color.edge"
+    }
+  ],
+  "fallback": {
+    "unresolvedToken": "error",
+    "missingTarget": "error"
+  }
+}

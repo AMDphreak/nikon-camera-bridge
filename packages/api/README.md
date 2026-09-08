@@ -6,25 +6,7 @@ Zoom/Teams stay dumb clients of the **video** adapter (`@nikon-camera-bridge/vid
 
 ## Diagram
 
-```mermaid
-flowchart TB
-  subgraph apps["Clients"]
-    Script[Scripts / companion tools]
-    FutureGUI[Future headless core]
-  end
-
-  subgraph api["@nikon-camera-bridge/api"]
-    HTTP[HTTP JSON routes]
-  end
-
-  subgraph core["@nikon-camera-bridge/core"]
-    Types[Types and state helpers]
-  end
-
-  Script --> HTTP
-  FutureGUI --> HTTP
-  HTTP --> Types
-```
+![API package relationships](../../docs/diagrams/api-package-relationships.svg)
 
 ## Run locally
 

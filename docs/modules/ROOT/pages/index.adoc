@@ -4,7 +4,7 @@
 :page-usage-context: Product architecture and project-status overview
 :page-orig-author: Ryan Johnson
 :page-last-author: Cursor agent on behalf of Ryan Johnson
-:page-last-edited: 2026-09-07
+:page-last-edited: 2026-09-08
 
 ifndef::page-context-active[]
 [.page-context.page-context-lead]
@@ -14,6 +14,8 @@ Audience:: {page-audience}
 endif::[]
 
 Nikon Camera Bridge is a Windows-first project for combining Nikon USB webcam video with camera controls in one service. The intended output is a Media Foundation virtual camera for apps such as Zoom, Teams, and OBS, plus a separate HTTP API for focus, exposure, and related commands.
+
+image::logical-architecture.svg[Nikon camera bridge logical architecture]
 
 == Current structure
 

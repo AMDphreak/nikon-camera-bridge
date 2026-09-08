@@ -1,0 +1,17 @@
+flowchart TB
+  accTitle: Video package relationships
+  accDescr: The video frame pump feeds virtual camera registration, which registers with Windows Media Foundation for consuming applications.
+
+  subgraph windows["Windows"]
+    MF[Media Foundation]
+    Zoom[Consuming apps]
+  end
+
+  subgraph video["@nikon-camera-bridge/video"]
+    Reg[Virtual camera registration planned]
+    Pump[Frame pump from core planned]
+  end
+
+  Pump --> Reg
+  Reg --> MF
+  Zoom --> MF

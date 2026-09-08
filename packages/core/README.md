@@ -6,19 +6,7 @@ This package deliberately stays **free of Electron, MF, and HTTP** so it can be 
 
 ## Relationship to the other pieces
 
-```mermaid
-flowchart LR
-  subgraph core["@nikon-camera-bridge/core"]
-    T[Types and state helpers]
-  end
-  API["@nikon-camera-bridge/api"]
-  VID["@nikon-camera-bridge/video"]
-  GUI["@nikon-camera-bridge/desktop"]
-
-  API --> T
-  VID --> T
-  GUI --> T
-```
+![Core package relationships](../../docs/diagrams/core-package-relationships.svg)
 
 ## Build
 

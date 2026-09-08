@@ -1,0 +1,15 @@
+flowchart TB
+  accTitle: Nikon camera bridge monorepo packages
+  accDescr: The desktop application depends on the core and video packages, while the API and video packages both depend on core.
+
+  subgraph repo["nikon-camera-bridge"]
+    pkg_core["packages/core"]
+    pkg_video["packages/video"]
+    pkg_api["packages/api"]
+    app_gui["apps/desktop"]
+    app_site["apps/site"]
+  end
+  pkg_video --> pkg_core
+  pkg_api --> pkg_core
+  app_gui --> pkg_core
+  app_gui --> pkg_video

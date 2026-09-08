@@ -1,0 +1,20 @@
+flowchart TB
+  accTitle: API package relationships
+  accDescr: Scripts and a future headless core call the HTTP JSON routes, which depend on shared core types and state helpers.
+
+  subgraph apps["Clients"]
+    Script[Scripts / companion tools]
+    FutureGUI[Future headless core]
+  end
+
+  subgraph api["@nikon-camera-bridge/api"]
+    HTTP[HTTP JSON routes]
+  end
+
+  subgraph core["@nikon-camera-bridge/core"]
+    Types[Types and state helpers]
+  end
+
+  Script --> HTTP
+  FutureGUI --> HTTP
+  HTTP --> Types

@@ -1,0 +1,17 @@
+flowchart TB
+  accTitle: Media Foundation placement
+  accDescr: The bridge core feeds its Media Foundation adapter, which registers with Windows Media Foundation for webcam applications such as Zoom.
+
+  subgraph windows["Windows"]
+    MF[Media Foundation]
+    Zoom2[Zoom]
+  end
+
+  subgraph yourproc["Your process"]
+    Core[Core]
+    MFSink[MF virtual camera adapter packages/video]
+  end
+
+  Core --> MFSink
+  MFSink --> MF
+  Zoom2 --> MF

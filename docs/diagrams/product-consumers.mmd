@@ -1,0 +1,23 @@
+flowchart LR
+  accTitle: Nikon camera bridge consumers
+  accDescr: Webcam applications consume the virtual camera and control clients consume the HTTP API; both adapters connect to the bridge service.
+
+  subgraph consumers["Consumers of your product"]
+    A1[App A webcam]
+    A2[App B webcam]
+    C1[Control client 1]
+    C2[Control client 2]
+  end
+
+  subgraph product["Your shipped software"]
+    SVC[Bridge service / core]
+    VCam[Virtual camera device node]
+    API2[Control API endpoint]
+  end
+
+  A1 --> VCam
+  A2 --> VCam
+  C1 --> API2
+  C2 --> API2
+  VCam --> SVC
+  API2 --> SVC

@@ -1,0 +1,23 @@
+flowchart TB
+  accTitle: Nikon camera bridge logical architecture
+  accDescr: Camera data moves from the USB reader through the video pipeline to a Media Foundation virtual camera, while companion tools use a separate HTTP control API.
+
+  subgraph apps["Other peoples apps"]
+    Zoom[Zoom / Teams / OBS]
+    Companion[Scripts / companion tools]
+  end
+
+  subgraph bridge["Your bridge one logical core"]
+    USB[USB / PTP / UVC reader owns device]
+    CTRL[Control engine maps API to camera commands]
+    VID[Video pipeline decode scale timestamp]
+    MFVC[MF virtual camera sink registers device]
+    API[Your control API HTTP JSON]
+  end
+
+  Zoom -->|opens webcam| MFVC
+  Companion -->|focus exposure etc| API
+  API --> CTRL
+  CTRL --> USB
+  USB --> VID
+  VID --> MFVC

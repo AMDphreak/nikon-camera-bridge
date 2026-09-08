@@ -1,6 +1,11 @@
 import { Title } from "@solidjs/meta";
+import { upgradeThemedSvgImage } from "@dev-centr/themed-svg/runtime";
+import { onMount } from "solid-js";
 
 export default function Home() {
+  let architectureDiagram!: HTMLImageElement;
+  onMount(() => upgradeThemedSvgImage(architectureDiagram));
+
   return (
     <main class="hero">
       <Title>Webcam Bridge for Nikon</Title>
@@ -30,6 +35,18 @@ export default function Home() {
           Repository
         </a>
       </div>
+      <figure class="architecture">
+        <img
+          ref={architectureDiagram}
+          src="./diagrams/logical-architecture.svg"
+          alt="Nikon camera bridge logical architecture"
+          width="588"
+          height="762"
+        />
+        <figcaption>
+          Video and control share one camera-owning core, then leave through separate adapters.
+        </figcaption>
+      </figure>
       <section class="highlights" aria-labelledby="hl-heading">
         <h2 id="hl-heading" class="sr-only">
           Highlights

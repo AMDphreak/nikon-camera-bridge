@@ -86,91 +86,21 @@ pnpm run dev:site
 
 One **core** owns USB and coordinates **two outward adapters**: video into MF, control into your HTTP API. Media Foundation is the **Microsoft library** you use to **implement** the virtual camera; it is not a replacement for your own control API.
 
-```mermaid
-flowchart TB
-  subgraph apps["Other peoples apps"]
-    Zoom[Zoom / Teams / OBS]
-    Companion[Scripts / companion tools]
-  end
-
-  subgraph bridge["Your bridge one logical core"]
-    USB[USB / PTP / UVC reader owns device]
-    CTRL[Control engine maps API to camera commands]
-    VID[Video pipeline decode scale timestamp]
-    MFVC[MF virtual camera sink registers device]
-    API[Your control API HTTP JSON]
-  end
-
-  Zoom -->|opens webcam| MFVC
-  Companion -->|focus exposure etc| API
-  API --> CTRL
-  CTRL --> USB
-  USB --> VID
-  VID --> MFVC
-```
+![Nikon camera bridge logical architecture](docs/diagrams/logical-architecture.svg)
 
 ## Who consumes what?
 
-```mermaid
-flowchart LR
-  subgraph consumers["Consumers of your product"]
-    A1[App A webcam]
-    A2[App B webcam]
-    C1[Control client 1]
-    C2[Control client 2]
-  end
-
-  subgraph product["Your shipped software"]
-    SVC[Bridge service / core]
-    VCam[Virtual camera device node]
-    API2[Control API endpoint]
-  end
-
-  A1 --> VCam
-  A2 --> VCam
-  C1 --> API2
-  C2 --> API2
-  VCam --> SVC
-  API2 --> SVC
-```
+![Nikon camera bridge consumers](docs/diagrams/product-consumers.svg)
 
 ## Monorepo packages (build-time view)
 
-```mermaid
-flowchart TB
-  subgraph repo["nikon-camera-bridge"]
-    pkg_core["packages/core"]
-    pkg_video["packages/video"]
-    pkg_api["packages/api"]
-    app_gui["apps/desktop"]
-    app_site["apps/site"]
-  end
-  pkg_video --> pkg_core
-  pkg_api --> pkg_core
-  app_gui --> pkg_core
-  app_gui --> pkg_video
-```
+![Nikon camera bridge monorepo packages](docs/diagrams/monorepo-packages.svg)
 
 ## Media Foundation (MF) placement
 
 MF is a **Windows user-mode API** used to register and feed a **virtual camera**. Consuming apps talk to Windows; your process registers the device and pushes frames. Your **control API** does not need to go through MF.
 
-```mermaid
-flowchart TB
-  subgraph windows["Windows"]
-    MF[Media Foundation]
-    Zoom2[Zoom]
-  end
-
-  subgraph yourproc["Your process"]
-    Core[Core]
-    MFSink[MF virtual camera adapter packages/video]
-  end
-
-  Core --> MFSink
-  MFSink --> MF
-  Zoom2 --> MF
-```
+![Media Foundation placement](docs/diagrams/media-foundation-placement.svg)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

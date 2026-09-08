@@ -6,22 +6,7 @@ Today it only exports **constants** so the workspace has a clear seam; the imple
 
 ## Diagram
 
-```mermaid
-flowchart TB
-  subgraph windows["Windows"]
-    MF[Media Foundation]
-    Zoom[Consuming apps]
-  end
-
-  subgraph video["@nikon-camera-bridge/video"]
-    Reg[Virtual camera registration planned]
-    Pump[Frame pump from core planned]
-  end
-
-  Pump --> Reg
-  Reg --> MF
-  Zoom --> MF
-```
+![Video package relationships](../../docs/diagrams/video-package-relationships.svg)
 
 ## Build
 

@@ -4,30 +4,7 @@ Electron **shell** for the Nikon bridge: local IPC toggles (stubs), status text,
 
 ## How it fits with the other pieces
 
-```mermaid
-flowchart LR
-  subgraph consumers["Consumers"]
-    User[Operator]
-    Zoom[Zoom / Teams]
-  end
-
-  subgraph desktop["apps/desktop"]
-    UI[Electron renderer]
-    IPC[IPC to main process]
-  end
-
-  subgraph other["Other packages"]
-    Core["@nikon-camera-bridge/core"]
-    API["@nikon-camera-bridge/api"]
-    VID["@nikon-camera-bridge/video"]
-  end
-
-  User --> UI
-  UI --> IPC
-  IPC --> Core
-  Zoom -. future virtual cam .-> VID
-  API -. localhost .-> User
-```
+![Desktop package relationships](../../docs/diagrams/desktop-package-relationships.svg)
 
 The GUI is **one control client** among many; the long-term split is a headless core plus this app as an optional front-end.
 
