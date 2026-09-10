@@ -1,6 +1,7 @@
 import { defineConfig } from "@solidjs/start/config";
+import { getPrerenderRoutes } from "./scripts/site-routes.mjs";
 
-const base = process.env.VITE_BASE_PATH ?? "/";
+const base = process.env.VITE_BASE_PATH ?? "/nikon-camera-bridge/";
 
 export default defineConfig({
   ssr: true,
@@ -8,7 +9,7 @@ export default defineConfig({
     preset: "static",
     baseURL: base === "/" ? "/" : base.replace(/\/$/, ""),
     prerender: {
-      routes: ["/", "/about"],
+      routes: getPrerenderRoutes(),
       crawlLinks: false,
     },
   },

@@ -1,6 +1,10 @@
-# Changelog
+﻿# Changelog
 
 ## [Unreleased]
+
+### Added
+
+- **Site crawlability:** `apps/site` writes `/robots.txt` and `/sitemap.xml` from the shared prerender route list (`/` and `/about`) with absolute `https://desktop-tooling.github.io/nikon-camera-bridge/` URLs.
 
 ### Changed
 
@@ -15,7 +19,7 @@
 
 ### Added
 
-- **`apps/site`**: SolidStart (**1.x** + Vinxi) marketing site with prerendered **`/`** and **`/about`**, GitHub Pages base path via `VITE_BASE_PATH`, and [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) for deployment from `main` (enable **Pages → GitHub Actions** in repo settings).
+- **`apps/site`**: SolidStart (**1.x** + Vinxi) marketing site with prerendered **`/`** and **`/about`**, GitHub Pages base path via `VITE_BASE_PATH`, and [`.github/workflows/pages.yml`](./.github/workflows/pages.yml) for deployment from `main` (enable **Pages â†’ GitHub Actions** in repo settings).
 - Root scripts **`pnpm run build:site`** and **`pnpm run dev:site`**.
 - Desktop builds for **Linux** (`.deb`, `.AppImage`, `.flatpak`, x64 + arm64) and **macOS** (`.dmg`, x64 + arm64) alongside **Windows** (`.msi` + portable `.zip`, x64 + arm64); `artifactName` includes OS and arch.
 - `docs/distribution.md` with WinGet, Homebrew, Debian/Flatpak, and AUR maintainer flows.
@@ -29,7 +33,7 @@
 
 ### Fixed
 
-- Linux **`.deb`** builds: electron-builder’s FPM path requires **`homepage`** (and benefits from **`repository`**) in `apps/desktop/package.json`; without it, `deb` failed after `tar.gz` succeeded.
+- Linux **`.deb`** builds: electron-builderâ€™s FPM path requires **`homepage`** (and benefits from **`repository`**) in `apps/desktop/package.json`; without it, `deb` failed after `tar.gz` succeeded.
 
 [0.3.0]: https://github.com/AMDphreak/nikon-camera-bridge/releases/tag/v0.3.0
 

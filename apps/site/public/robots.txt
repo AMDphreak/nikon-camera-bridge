@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://desktop-tooling.github.io/nikon-camera-bridge/sitemap.xml
